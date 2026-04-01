@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8FVZVC2BR6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-8FVZVC2BR6');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Meta tags injected from portfolio.json -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap"
+        rel="stylesheet">
+
+    <link rel="icon" href="assets/favicon/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="assets/favicon/site.webmanifest">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' };</script>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Google Sans', sans-serif;
+        }
+
+        a,
+        button {
+            cursor: pointer;
+        }
+
+        ::selection {
+            background-color: #1e3a8a;
+            color: #ffffff;
+        }
+
+        ::-moz-selection {
+            background-color: #1e3a8a;
+            color: #ffffff;
+        }
+
+        .dark {
+            color-scheme: dark;
+        }
+
+        .dark ::selection {
+            background-color: #60a5fa;
+            color: #000000;
+        }
+
+        .dark ::-moz-selection {
+            background-color: #60a5fa;
+            color: #000000;
+        }
+
+        * {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .skill-bar {
+            width: 0;
+            transition: width 1.5s ease-out;
+        }
+
+        .skill-bar.animate {
+            width: var(--skill-width);
+        }
+
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+
+<body class="bg-white dark:bg-black text-slate-900 dark:text-white">
+
+    <!-- Navbar -->
+    <header
+        class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-slate-200 dark:border-gray-900">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a id="nav-brand" href="#home" class="text-2xl font-bold text-blue-900 dark:text-blue-400"></a>
+                <div id="nav-links" class="hidden md:flex items-center space-x-8"></div>
+                <div class="flex items-center space-x-4">
+                    <button id="theme-toggle"
+                        class="p-2 rounded-lg bg-slate-100 dark:bg-[#0a0a0a] hover:bg-slate-200 dark:hover:bg-[#1a1a1a] transition-colors"
+                        aria-label="Toggle dark mode">
+                        <svg class="w-5 h-5 text-yellow-500 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <svg class="w-5 h-5 text-slate-700 block dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                        </svg>
+                    </button>
+                    <button id="mobile-menu-btn"
+                        class="md:hidden p-2 rounded-lg bg-slate-100 dark:bg-[#0a0a0a] hover:bg-slate-200 dark:hover:bg-[#1a1a1a] transition-colors"
+                        aria-label="Toggle menu">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16"></path>
+                            <path id="close-icon" class="hidden" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+        <div id="mobile-menu"
+            class="mobile-menu md:hidden fixed top-16 right-0 w-64 h-screen bg-white dark:bg-black border-l border-slate-200 dark:border-gray-900 shadow-xl">
+            <div id="mobile-nav-links" class="flex flex-col p-6 space-y-4"></div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section id="home"
+            class="min-h-screen flex items-center justify-center pt-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-white to-blue-50 dark:from-black dark:via-black dark:to-black">
+            <div class="container mx-auto max-w-7xl">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="fade-in text-center md:text-left">
+                        <h1 id="hero-name"
+                            class="text-5xl md:text-6xl lg:text-7xl font-bold mb-4 text-blue-900 dark:text-blue-400">
+                        </h1>
+                        <h2 id="hero-role"
+                            class="text-2xl md:text-3xl lg:text-4xl font-semibold mb-6 text-slate-700 dark:text-white">
+                        </h2>
+                        <p id="hero-tagline" class="text-lg md:text-xl mb-4 text-slate-600 dark:text-gray-300"></p>
+                        <p id="hero-description" class="text-base md:text-lg mb-8 text-slate-600 dark:text-gray-300">
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                            <a id="hero-resume-btn" href="#" download
+                                class="inline-flex items-center justify-center px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                    </path>
+                                </svg>
+                                View Resume
+                            </a>
+                            <a href="#contact"
+                                class="inline-flex items-center justify-center px-8 py-3 bg-transparent border-2 border-blue-600 text-blue-600 dark:text-blue-400 hover:bg-blue-600 hover:text-white dark:hover:bg-blue-600 dark:hover:text-white font-semibold rounded-lg transition-all duration-200">
+                                Contact Me
+                            </a>
+                        </div>
+                    </div>
+                    <div class="fade-in flex justify-center md:justify-end">
+                        <div
+                            class="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl shadow-2xl flex items-center justify-center overflow-hidden">
+                            <img id="hero-image" src="" alt="" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About -->
+        <section id="about" class="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black">
+            <div class="container mx-auto max-w-4xl">
+                <h2 id="about-heading"
+                    class="text-4xl md:text-5xl font-bold mb-12 text-center text-blue-900 dark:text-blue-400 fade-in">
+                </h2>
+                <div id="about-content" class="space-y-6 text-lg text-slate-700 dark:text-white fade-in"></div>
+            </div>
+        </section>
+
+        <!-- Skills -->
+        <section id="skills" class="py-20 px-4 sm:px-6 lg:px-8 bg-slate-50 dark:bg-black">
+            <div class="container mx-auto max-w-7xl">
+                <h2 id="skills-heading"
+                    class="text-4xl md:text-5xl font-bold mb-12 text-center text-blue-900 dark:text-blue-400 fade-in">
+                </h2>
+                <div id="skills-grid" class="grid md:grid-cols-2 gap-8"></div>
+            </div>
+        </section>
+
+        <!-- Experience -->
+        <section id="experience" class="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black">
+            <div class="container mx-auto max-w-6xl">
+                <h2 id="experience-heading"
+                    class="text-4xl md:text-5xl font-bold mb-12 text-center text-blue-900 dark:text-blue-400 fade-in">
+                </h2>
+                <div id="experience-list" class="space-y-12"></div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="py-20 px-4 sm:px-6 lg:px-8 bg-slate-50 dark:bg-black">
+            <div class="container mx-auto max-w-4xl">
+                <h2 id="contact-heading"
+                    class="text-4xl md:text-5xl font-bold mb-4 text-center text-blue-900 dark:text-blue-400 fade-in">
+                </h2>
+                <p id="contact-subheading" class="text-center text-lg text-slate-600 dark:text-gray-300 mb-12 fade-in">
+                </p>
+                <div id="contact-grid" class="grid md:grid-cols-2 gap-6"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 dark:bg-black text-slate-300 py-12 px-4 sm:px-6 lg:px-8">
+        <div class="container mx-auto max-w-6xl">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="mb-4 md:mb-0">
+                    <p id="footer-copyright" class="text-slate-400"></p>
+                    <p id="footer-tagline" class="text-slate-500 text-sm mt-2"></p>
+                </div>
+                <div class="flex space-x-6">
+                    <a id="footer-github" href="#" target="_blank" rel="noopener noreferrer"
+                        class="text-slate-400 hover:text-blue-400 transition-colors" aria-label="GitHub">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd"
+                                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-1.004-.013-1.845-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </a>
+                    <a id="footer-email" href="#" class="text-slate-400 hover:text-blue-400 transition-colors"
+                        aria-label="Email">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                            </path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ============================================================
+        // HIGHLIGHT — Universal {word or phrase} → styled span
+        // Wrap any text in {curly braces} in the JSON to highlight it.
+        // ============================================================
+        function highlight(text) {
+            return text.replace(/\{([^}]+)\}/g,
+                '<span class="font-semibold text-blue-600 dark:text-blue-400">$1</span>'
+            );
+        }
+
+        // ============================================================
+        // ICON LIBRARY
+        // ============================================================
+        const ICONS = {
+            email: { fill: false, path: 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z' },
+            phone: { fill: false, path: 'M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z' },
+            location: { fill: false, path: 'M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z' },
+            github: { fill: true, path: 'M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-1.004-.013-1.845-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z' }
+        };
+
+        function iconSvg(name, cls = 'w-6 h-6 text-white') {
+            const icon = ICONS[name];
+            if (!icon) return '';
+            return icon.fill
+                ? `<svg class="${cls}" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="${icon.path}" clip-rule="evenodd"></path></svg>`
+                : `<svg class="${cls}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="${icon.path}"></path></svg>`;
+        }
+
+        // ============================================================
+        // RENDERERS
+        // ============================================================
+
+        function applyMeta(meta) {
+            document.title = meta.title;
+            const set = (sel, attr, val) => {
+                let el = document.querySelector(sel);
+                if (!el) { el = document.createElement('meta'); document.head.appendChild(el); }
+                el.setAttribute(attr, val);
+            };
+            set('meta[name="description"]', 'content', meta.description);
+            set('meta[name="keywords"]', 'content', meta.keywords);
+            set('meta[name="author"]', 'content', meta.author);
+            set('meta[property="og:type"]', 'content', 'website');
+            set('meta[property="og:url"]', 'content', meta.siteUrl);
+            set('meta[property="og:title"]', 'content', meta.title);
+            set('meta[property="og:description"]', 'content', meta.description);
+            set('meta[property="og:image"]', 'content', meta.ogImage);
+            set('meta[property="twitter:card"]', 'content', 'summary_large_image');
+            set('meta[property="twitter:url"]', 'content', meta.siteUrl);
+            set('meta[property="twitter:title"]', 'content', meta.title);
+            set('meta[property="twitter:description"]', 'content', meta.description);
+            set('meta[property="twitter:image"]', 'content', meta.ogImage);
+        }
+
+        function renderNav(nav) {
+            document.getElementById('nav-brand').textContent = nav.brand;
+            const cls = 'nav-link text-slate-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors';
+            document.getElementById('nav-links').innerHTML = nav.links.map(l =>
+                `<a href="${l.href}" class="${cls}">${l.label}</a>`
+            ).join('');
+            document.getElementById('mobile-nav-links').innerHTML = nav.links.map(l =>
+                `<a href="${l.href}" class="mobile-nav-link text-slate-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 py-2 transition-colors">${l.label}</a>`
+            ).join('');
+        }
+
+        function renderHero(hero) {
+            document.getElementById('hero-name').textContent = hero.name;
+            document.getElementById('hero-role').textContent = hero.role;
+            document.getElementById('hero-description').innerHTML = highlight(hero.description);
+            document.getElementById('hero-resume-btn').href = hero.resumeUrl;
+            document.getElementById('hero-image').src = hero.profileImage;
+            document.getElementById('hero-image').alt = hero.profileImageAlt;
+            // highlight() handles {word} → styled span for the tagline
+            document.getElementById('hero-tagline').innerHTML = highlight(hero.tagline);
+        }
+
+        function renderAbout(about) {
+            document.getElementById('about-heading').textContent = about.heading;
+            document.getElementById('about-content').innerHTML = about.paragraphs
+                .map(p => `<p>${highlight(p)}</p>`).join('');
+        }
+
+        function renderSkills(skills) {
+            document.getElementById('skills-heading').textContent = skills.heading;
+            document.getElementById('skills-grid').innerHTML = skills.groups.map(group => `
+            <div class="fade-in bg-white dark:bg-[#0a0a0a] p-8 rounded-xl shadow-lg">
+                <h3 class="text-2xl font-bold mb-6 text-blue-600 dark:text-blue-400">${group.category}</h3>
+                <div class="space-y-4">
+                    ${group.skills.map(s => `
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-semibold text-slate-700 dark:text-slate-300">${s.name}</span>
+                                <span class="text-sm text-slate-500 dark:text-gray-400">${s.level}</span>
+                            </div>
+                            <div class="w-full bg-slate-200 dark:bg-[#1a1a1a] rounded-full h-2.5">
+                                <div class="skill-bar bg-blue-600 h-2.5 rounded-full" data-width="${s.width}"></div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `).join('');
+        }
+
+        function renderExperience(experience) {
+            document.getElementById('experience-heading').textContent = experience.heading;
+            document.getElementById('experience-list').innerHTML = experience.jobs.map(job => `
+            <div class="fade-in bg-slate-50 dark:bg-[#0a0a0a] p-8 rounded-xl shadow-lg border-l-4 ${job.borderColor}">
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                    <div>
+                        <h3 class="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-2">${job.title}</h3>
+                        <p class="text-lg font-semibold text-slate-700 dark:text-white">${job.company}</p>
+                    </div>
+                    <span class="text-slate-600 dark:text-gray-400 font-medium mt-2 md:mt-0">${job.period}</span>
+                </div>
+                <ul class="space-y-3 text-slate-700 dark:text-white list-disc list-inside">
+                    ${job.highlights.map(h => `<li>${highlight(h)}</li>`).join('')}
+                </ul>
+            </div>
+        `).join('');
+        }
+
+        function renderOpenSource(opensource) {
+            document.getElementById('opensource-heading').textContent = opensource.heading;
+            const arrow = `<svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>`;
+            const ext = `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>`;
+            document.getElementById('opensource-grid').innerHTML = opensource.projects.map(p => `
+            <div class="fade-in bg-white dark:bg-[#0a0a0a] p-8 rounded-xl shadow-lg hover:shadow-2xl transition-shadow border border-slate-200 dark:border-[#1a1a1a]">
+                <div class="flex items-start justify-between mb-4">
+                    <h3 class="text-2xl font-bold text-blue-600 dark:text-blue-400">${p.name}</h3>
+                    <a href="${p.url}" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors">${ext}</a>
+                </div>
+                <p class="text-slate-700 dark:text-white mb-4">${highlight(p.description)}</p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                    ${p.tags.map(t => `<span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium">${t}</span>`).join('')}
+                </div>
+                <a href="${p.url}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-semibold transition-colors">
+                    ${p.linkLabel}${arrow}
+                </a>
+            </div>
+        `).join('');
+        }
+
+        function renderCertifications(certifications) {
+            document.getElementById('certifications-heading').textContent = certifications.heading;
+            const certIcon = `<svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>`;
+            document.getElementById('certifications-list').innerHTML = certifications.items.map(c => `
+            <div class="fade-in bg-white dark:bg-[#0a0a0a] p-8 rounded-xl shadow-lg border border-slate-200 dark:border-[#1a1a1a]">
+                <div class="flex items-start space-x-6">
+                    <div class="w-16 h-16 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">${certIcon}</div>
+                    <div class="flex-1">
+                        <h3 class="text-2xl font-bold mb-2 text-blue-600 dark:text-blue-400">${c.title}</h3>
+                        <p class="text-lg font-semibold text-slate-700 dark:text-white mb-2">${c.issuer}</p>
+                        <p class="text-slate-600 dark:text-gray-300">${highlight(c.description)}</p>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+        }
+
+        function renderContact(contact) {
+            document.getElementById('contact-heading').textContent = contact.heading;
+            document.getElementById('contact-subheading').textContent = contact.subheading;
+            document.getElementById('contact-grid').innerHTML = contact.items.map(item => {
+                const valueEl = item.href
+                    ? `<a href="${item.href}" ${item.external ? 'target="_blank" rel="noopener noreferrer"' : ''} class="text-blue-600 dark:text-blue-400 hover:underline">${item.value}</a>`
+                    : `<p class="text-slate-700 dark:text-white">${item.value}</p>`;
+                return `
+                <div class="fade-in bg-white dark:bg-[#0a0a0a] p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center">
+                            ${iconSvg(item.icon)}
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-slate-900 dark:text-slate-100">${item.label}</h3>
+                            ${valueEl}
+                        </div>
+                    </div>
+                </div>`;
+            }).join('');
+        }
+
+        function renderFooter(footer) {
+            document.getElementById('footer-copyright').textContent = footer.copyright;
+            document.getElementById('footer-tagline').textContent = footer.tagline;
+            document.getElementById('footer-github').href = footer.githubUrl;
+            document.getElementById('footer-email').href = `mailto:${footer.email}`;
+        }
+
+        // ============================================================
+        // ANIMATIONS
+        // ============================================================
+
+        function initObservers() {
+            const fadeObs = new IntersectionObserver((entries) => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) { e.target.classList.add('visible'); fadeObs.unobserve(e.target); }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+            const skillObs = new IntersectionObserver((entries) => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        e.target.style.setProperty('--skill-width', e.target.getAttribute('data-width'));
+                        e.target.classList.add('animate');
+                        skillObs.unobserve(e.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            document.querySelectorAll('.fade-in').forEach(el => fadeObs.observe(el));
+            document.querySelectorAll('.skill-bar').forEach(bar => skillObs.observe(bar));
+
+            // Hero stagger on load
+            document.querySelectorAll('#home .fade-in').forEach((el, i) => {
+                setTimeout(() => el.classList.add('visible'), i * 200);
+            });
+        }
+
+        // ============================================================
+        // CONTROLS (theme, mobile menu, scroll, active nav)
+        // ============================================================
+
+        function initControls() {
+            // Theme toggle
+            const html = document.documentElement;
+            document.getElementById('theme-toggle').addEventListener('click', () => {
+                html.classList.toggle('dark');
+                localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+            });
+
+            // Mobile menu
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+            const menuIcon = document.getElementById('menu-icon');
+            const closeIcon = document.getElementById('close-icon');
+
+            const closeMenu = () => {
+                menu.classList.remove('open');
+                menuIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            };
+
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('open');
+                menuIcon.classList.toggle('hidden');
+                closeIcon.classList.toggle('hidden');
+            });
+            document.getElementById('mobile-nav-links').addEventListener('click', e => {
+                if (e.target.tagName === 'A') closeMenu();
+            });
+            document.addEventListener('click', e => {
+                if (!menu.contains(e.target) && !btn.contains(e.target)) closeMenu();
+            });
+
+            // Smooth scroll (delegated)
+            document.addEventListener('click', e => {
+                const link = e.target.closest('a[href^="#"]');
+                if (!link) return;
+                const href = link.getAttribute('href');
+                if (href === '#') return;
+                e.preventDefault();
+                const target = document.getElementById(href.substring(1));
+                if (target) window.scrollTo({ top: target.getBoundingClientRect().top + window.pageYOffset - 80, behavior: 'smooth' });
+            });
+
+            // Active nav highlight
+            const updateNav = () => {
+                const scrollY = window.scrollY + 100;
+                document.querySelectorAll('section[id]').forEach(section => {
+                    if (scrollY >= section.offsetTop && scrollY < section.offsetTop + section.offsetHeight) {
+                        const id = section.getAttribute('id');
+                        document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(link => {
+                            const active = link.getAttribute('href') === `#${id}`;
+                            link.classList.toggle('text-blue-600', active);
+                            link.classList.toggle('text-slate-700', !active);
+                        });
+                    }
+                });
+            };
+            let ticking = false;
+            window.addEventListener('scroll', () => {
+                if (!ticking) { window.requestAnimationFrame(() => { updateNav(); ticking = false; }); ticking = true; }
+            });
+            updateNav();
+        }
+
+        // ============================================================
+        // BOOT — fetch portfolio.json then render everything
+        // ============================================================
+
+        // Apply saved theme immediately to avoid flash
+        if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
+
+        async function boot() {
+            let data;
+            try {
+                const res = await fetch('portfolio.json');
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                data = await res.json();
+            } catch (err) {
+                document.body.innerHTML = `
+                <div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;color:#ef4444;text-align:center;padding:2rem;">
+                    <div>
+                        <h1 style="font-size:1.5rem;margin-bottom:1rem;">⚠️ Could not load portfolio.json</h1>
+                        <p>Make sure <code>portfolio.json</code> is in the same folder as <code>index.html</code>.</p>
+                        <p style="font-size:0.85em;color:#999;margin-top:0.5rem;">${err.message}</p>
+                        <p style="font-size:0.85em;color:#999;margin-top:0.5rem;">
+                            <strong>Note:</strong> This page must be served via a web server (e.g. <code>npx serve .</code>),
+                            not opened directly as a file, due to browser fetch restrictions.
+                        </p>
+                    </div>
+                </div>`;
+                return;
+            }
+
+            applyMeta(data.meta);
+            renderNav(data.nav);
+            renderHero(data.hero);
+            renderAbout(data.about);
+            renderSkills(data.skills);
+            renderExperience(data.experience);
+            renderContact(data.contact);
+            renderFooter(data.footer);
+
+            initControls();
+            initObservers();
+        }
+
+        document.addEventListener('DOMContentLoaded', boot);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,266 @@
+{
+    "meta": {
+        "title": "Divya Shree P - Frontend Developer (React.js) | UI Engineer",
+        "description": "Frontend Developer with 3+ years of experience designing and implementing responsive web interfaces. Background in UI/UX design combined with frontend development using HTML5, CSS3, JavaScript, and React.js.",
+        "keywords": "Frontend Developer, React.js, UI Engineer, JavaScript, HTML, CSS, Responsive Web Design, UI/UX Design, Figma, Bootstrap, Frontend Development",
+        "author": "Divya Shree P",
+        "siteUrl": "https://divyashreepalraj.github.io",
+        "ogImage": "https://divyashreepalraj.github.io/assets/images/dp.png",
+        "themeColor": "#8b5cf6"
+    },
+    "nav": {
+        "brand": "Divya Shree P",
+        "links": [
+            {
+                "label": "Home",
+                "href": "#home"
+            },
+            {
+                "label": "About",
+                "href": "#about"
+            },
+            {
+                "label": "Skills",
+                "href": "#skills"
+            },
+            {
+                "label": "Experience",
+                "href": "#experience"
+            },
+            {
+                "label": "Education",
+                "href": "#education"
+            },
+            {
+                "label": "Contact",
+                "href": "#contact"
+            }
+        ]
+    },
+    "hero": {
+        "name": "Divya Shree P",
+        "role": "Frontend Developer (React.js) | UI Engineer",
+        "tagline": "Crafting {immersive web experiences} through {elegant design} and {clean code}",
+        "description": "Frontend Developer with 3+ years of experience building responsive, user-centric web applications. Specialized in translating Figma designs into scalable React.js components while maintaining pixel-perfect precision and optimal performance.",
+        "resumeUrl": "https://divyashreepalraj.github.io/assets/pdf/divya.pdf",
+        "profileImage": "https://divyashreepalraj.github.io/assets/images/dp.png",
+        "profileImageAlt": "Divya Shree P"
+    },
+    "about": {
+        "heading": "About Me",
+        "paragraphs": [
+            "I am a {Frontend Developer} with over {3+ years of experience} designing and implementing responsive web interfaces. My professional journey began in {UI/UX design}, which gave me a unique perspective on creating intuitive user experiences. This foundation allows me to bridge the gap between design and development effortlessly.",
+            "Throughout my career, I have specialized in building {interactive dashboards}, {responsive layouts}, and {reusable UI component libraries}. My expertise spans across {React.js}, {JavaScript (ES6+)}, {HTML5}, and {CSS3}, with a strong emphasis on component-based architecture and modern UI development practices.",
+            "What sets me apart is my ability to collaborate effectively with cross-functional teams including designers, backend developers, and product managers. I thrive in {Agile environments} and am passionate about delivering high-quality user interfaces that balance aesthetics with functionality.",
+            "I am continuously exploring new technologies and best practices to enhance my craft. My goal is to contribute to impactful projects where I can leverage my skills in frontend development and UI/UX design to create meaningful digital experiences."
+        ]
+    },
+    "skills": {
+        "heading": "Technical Expertise",
+        "groups": [
+            {
+                "category": "Frontend Development",
+                "skills": [
+                    {
+                        "name": "React.js",
+                        "level": "Advanced",
+                        "width": "90%"
+                    },
+                    {
+                        "name": "JavaScript (ES6+)",
+                        "level": "Advanced",
+                        "width": "88%"
+                    },
+                    {
+                        "name": "HTML5 & CSS3",
+                        "level": "Expert",
+                        "width": "95%"
+                    },
+                    {
+                        "name": "Bootstrap",
+                        "level": "Advanced",
+                        "width": "85%"
+                    },
+                    {
+                        "name": "Responsive Web Design",
+                        "level": "Expert",
+                        "width": "92%"
+                    },
+                    {
+                        "name": "Component Architecture",
+                        "level": "Advanced",
+                        "width": "88%"
+                    }
+                ]
+            },
+            {
+                "category": "React Ecosystem",
+                "skills": [
+                    {
+                        "name": "React Hooks",
+                        "level": "Advanced",
+                        "width": "90%"
+                    },
+                    {
+                        "name": "State Management",
+                        "level": "Advanced",
+                        "width": "82%"
+                    },
+                    {
+                        "name": "REST API Integration",
+                        "level": "Advanced",
+                        "width": "85%"
+                    },
+                    {
+                        "name": "Dynamic UI Rendering",
+                        "level": "Advanced",
+                        "width": "88%"
+                    },
+                    {
+                        "name": "Component Lifecycle",
+                        "level": "Advanced",
+                        "width": "80%"
+                    }
+                ]
+            },
+            {
+                "category": "UI/UX Design",
+                "skills": [
+                    {
+                        "name": "Figma",
+                        "level": "Advanced",
+                        "width": "90%"
+                    },
+                    {
+                        "name": "Adobe XD",
+                        "level": "Advanced",
+                        "width": "85%"
+                    },
+                    {
+                        "name": "Wireframing & Prototyping",
+                        "level": "Advanced",
+                        "width": "88%"
+                    },
+                    {
+                        "name": "Design Systems",
+                        "level": "Advanced",
+                        "width": "85%"
+                    },
+                    {
+                        "name": "User Research",
+                        "level": "Intermediate",
+                        "width": "75%"
+                    },
+                    {
+                        "name": "Photoshop",
+                        "level": "Intermediate",
+                        "width": "70%"
+                    }
+                ]
+            },
+            {
+                "category": "Development Tools",
+                "skills": [
+                    {
+                        "name": "Git & Version Control",
+                        "level": "Advanced",
+                        "width": "85%"
+                    },
+                    {
+                        "name": "Jira",
+                        "level": "Advanced",
+                        "width": "88%"
+                    },
+                    {
+                        "name": "Agile / Scrum",
+                        "level": "Advanced",
+                        "width": "90%"
+                    },
+                    {
+                        "name": "Bitbucket",
+                        "level": "Advanced",
+                        "width": "80%"
+                    },
+                    {
+                        "name": "Chrome DevTools",
+                        "level": "Advanced",
+                        "width": "85%"
+                    }
+                ]
+            }
+        ]
+    },
+    "experience": {
+        "heading": "Professional Experience",
+        "jobs": [
+            {
+                "title": "UI/UX Designer - Frontend Development",
+                "company": "Digient Technologies",
+                "period": "Apr 2022 – Present",
+                "borderColor": "border-purple-600",
+                "highlights": [
+                    "Designed intuitive user interfaces and interaction flows for gaming and entertainment platforms using Figma and Adobe XD, resulting in improved user engagement.",
+                    "Converted design prototypes into responsive, pixel-perfect web interfaces using HTML5, CSS3, JavaScript, and Bootstrap.",
+                    "Developed and maintained a comprehensive UI component library for dashboards and internal tools, reducing development time by 40%.",
+                    "Collaborated with cross-functional teams to integrate UI components into production systems, ensuring seamless functionality and visual consistency.",
+                    "Enhanced usability and accessibility across dashboard interfaces handling large datasets, improving user satisfaction scores by 25%.",
+                    "Established and maintained UI design system guidelines, ensuring consistent product interfaces across all digital properties.",
+                    "Actively participated in Agile/Scrum development cycles, contributing to sprint planning, daily stand-ups, and retrospectives.",
+                    "Mentored junior developers on frontend best practices and modern UI architecture principles."
+                ]
+            }
+        ]
+    },
+    "education": {
+        "heading": "Education",
+        "items": [
+            {
+                "degree": "Bachelor of Engineering in Electrical and Electronics Engineering",
+                "institution": "St Joseph's Group of Institutions, Chennai",
+                "period": "2018 – 2022",
+                "cgpa": "7.8",
+                "description": null
+            }
+        ]
+    },
+    "contact": {
+        "heading": "Let's Connect",
+        "subheading": "Open to exciting opportunities in frontend development and UI engineering.",
+        "items": [
+            {
+                "label": "Email",
+                "value": "divyashree.palraj@gmail.com",
+                "href": "mailto:divyashree.palraj@gmail.com",
+                "external": false,
+                "icon": "email"
+            },
+            {
+                "label": "Phone",
+                "value": "+91 8189898624",
+                "href": "tel:8189898624",
+                "external": false,
+                "icon": "phone"
+            },
+            {
+                "label": "Location",
+                "value": "Chennai, India",
+                "href": null,
+                "external": false,
+                "icon": "location"
+            },
+            {
+                "label": "GitHub",
+                "value": "github.com/divyashreepalraj",
+                "href": "https://github.com/divyashreepalraj",
+                "external": true,
+                "icon": "github"
+            }
+        ]
+    },
+    "footer": {
+        "copyright": "© 2026 Divya Shree P. All rights reserved.",
+        "tagline": "Frontend Developer | UI Engineer | React.js Specialist",
+        "githubUrl": "https://divyashreepalraj.github.io",
+        "email": "divyashree.palraj@gmail.com"
+    }
+}
