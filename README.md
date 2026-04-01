@@ -186,8 +186,8 @@ This project is open source and available under the [MIT License](LICENSE).
 - Phone: +91 8189898624
 - Location: Chennai, India
 - Portfolio: [divyashreepalraj.github.io](https://divyashreepalraj.github.io)
-- GitHub: [github.com/yourusername](https://github.com/yourusername)
-- LinkedIn: [linkedin.com/in/yourprofile](https://linkedin.com/in/yourprofile)
+- GitHub: [github.com/divyashreepalraj](https://github.com/divyashreepalraj)
+- LinkedIn: [linkedin.com/in/divyashreepalraj](https://linkedin.com/in/divyashreepalraj)
 
 ## 🙏 Acknowledgments
 

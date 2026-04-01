@@ -1,12 +1,12 @@
 {
-    "name": "Bhuvanesh - Senior Software Engineer",
-    "short_name": "Bhuvanesh",
-    "description": "Senior Software Engineer specializing in Angular, Node.js, NestJS, and scalable real-time systems.",
+    "name": "Divya Shree P - Frontend Developer",
+    "short_name": "Divya Shree",
+    "description": "Frontend Developer specializing in React.js, UI/UX Design, and responsive web interfaces.",
     "start_url": "/",
     "scope": "/",
     "display": "standalone",
     "background_color": "#ffffff",
-    "theme_color": "#1e3a8a",
+    "theme_color": "#8b5cf6",
     "orientation": "portrait-primary",
     "icons": [
         {
