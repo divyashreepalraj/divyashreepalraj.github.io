@@ -235,20 +235,6 @@
                 "icon": "email"
             },
             {
-                "label": "Phone",
-                "value": "+91 8189898624",
-                "href": "tel:8189898624",
-                "external": false,
-                "icon": "phone"
-            },
-            {
-                "label": "Location",
-                "value": "Chennai, India",
-                "href": null,
-                "external": false,
-                "icon": "location"
-            },
-            {
                 "label": "GitHub",
                 "value": "github.com/divyashreepalraj",
                 "href": "https://github.com/divyashreepalraj",
