@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume | Divya Shree P - UI Engineer</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    @media print {
+      body { background: #ffffff !important; color: #000000 !important; }
+      .header, .footer, .btn, .no-print { display: none !important; }
+      .resume-container { max-width: 100% !important; padding: 0 !important; box-shadow: none !important; border: none !important; }
+    }
+  </style>
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('divya_portfolio_theme');
+      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', savedTheme || (systemDark ? 'dark' : 'dark'));
+    })();
+  </script>
+</head>
+<body>
+  <header class="header scrolled">
+    <div class="container nav-container">
+      <a href="../index.html" class="logo">
+        <span class="text-gradient">Divya Shree P</span>
+        <span class="logo-dot"></span>
+      </a>
+      <div class="nav-actions">
+        <button class="btn btn-primary btn-sm no-print" onclick="window.print()">
+          Print / Save PDF
+        </button>
+        <a href="../index.html" class="btn btn-secondary btn-sm no-print">Back to Portfolio</a>
+      </div>
+    </div>
+  </header>
+
+  <main style="padding-top: 140px; padding-bottom: 60px;" class="container container-reading">
+    <div class="glass-card resume-container">
+      <div class="flex items-center justify-between" style="margin-bottom: 2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <h1 style="font-size: var(--font-size-3xl); margin-bottom: 0.25rem;">Divya Shree P</h1>
+          <p style="font-size: var(--font-size-lg); color: var(--accent-primary); font-weight: 600;">UI Engineer | Frontend Developer | Future Full Stack Developer</p>
+        </div>
+        <div class="font-mono text-muted" style="font-size: var(--font-size-xs); text-align: right;">
+          <div>India</div>
+          <div><a href="mailto:divyashree.palraj@gmail.com" style="color: var(--accent-primary);">divyashree.palraj@gmail.com</a></div>
+          <div><a href="https://github.com/divyashree-p" target="_blank" rel="noopener noreferrer">github.com/divyashree-p</a></div>
+          <div><a href="https://linkedin.com/in/divyashree-p" target="_blank" rel="noopener noreferrer">linkedin.com/in/divyashree-p</a></div>
+          <div><a href="https://behance.net/divyashree-p" target="_blank" rel="noopener noreferrer">behance.net/divyashree-p</a></div>
+        </div>
+      </div>
+
+      <section style="margin-bottom: 2rem;">
+        <h3 style="color: var(--accent-primary); margin-bottom: 0.75rem;">Professional Summary</h3>
+        <p style="color: var(--text-secondary); line-height: 1.7;">
+          UI Engineer and Frontend Developer with nearly 4 years of hands-on experience crafting production web applications, design systems, and responsive user interfaces at Digient Technologies. A designer who evolved into an engineer, possessing a strong visual foundation paired with rigorous JavaScript ES6+, HTML5, CSS3 (BEM architecture), and performance optimization expertise.
+        </p>
+      </section>
+
+      <section style="margin-bottom: 2rem;">
+        <h3 style="color: var(--accent-primary); margin-bottom: 0.75rem;">Professional Experience</h3>
+        <div style="margin-bottom: 1.5rem;">
+          <div class="flex items-center justify-between" style="margin-bottom: 0.25rem;">
+            <strong style="font-size: var(--font-size-lg);">UI Designer & Frontend Engineer</strong>
+            <span class="font-mono text-muted" style="font-size: var(--font-size-xs);">Digient Technologies | Nearly 4 Years</span>
+          </div>
+          <ul style="list-style: disc; padding-left: 1.25rem; color: var(--text-secondary); line-height: 1.6;">
+            <li>Engineered responsive user interface modules for enterprise iGaming platforms, casino content management systems (CMS), and real-time operator dashboards.</li>
+            <li>Collaborated closely with senior backend developers and product owners to translate complex requirements into clean DOM architecture.</li>
+            <li>Built component design systems in Figma and implemented them using modular BEM CSS, fluid typography scales, and CSS variables.</li>
+            <li>Optimized page load performance and eliminated layout shifts across desktop, mobile, and tablet viewports.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section style="margin-bottom: 2rem;">
+        <h3 style="color: var(--accent-primary); margin-bottom: 0.75rem;">Technical Skills</h3>
+        <div class="grid grid-cols-2 gap-4" style="color: var(--text-secondary);">
+          <div>
+            <strong>Frontend:</strong> HTML5, CSS3, Vanilla JavaScript (ES6+), BEM Architecture, CSS Variables, Responsive Grid/Flexbox
+          </div>
+          <div>
+            <strong>Design & UX:</strong> Figma, Wireframing, Prototyping, Design Systems, Typography & Color Scaling
+          </div>
+          <div>
+            <strong>Performance & Tools:</strong> WCAG 2.2 AA Accessibility, DOM Optimization, Git, GitHub, IntersectionObserver
+          </div>
+          <div>
+            <strong>Currently Expanding:</strong> Node.js, Full Stack Architecture, Modern Frameworks
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h3 style="color: var(--accent-primary); margin-bottom: 0.75rem;">Key Projects</h3>
+        <ul style="list-style: disc; padding-left: 1.25rem; color: var(--text-secondary); line-height: 1.6;">
+          <li><strong>High-Availability Maintenance Page:</strong> Handcrafted standby page with zero external dependencies and 100/100 Lighthouse score.</li>
+          <li><strong>Interactive Birthday Newspaper:</strong> Dynamic multi-column layout platform with print-accurate canvas rendering.</li>
+          <li><strong>Gaming Analytics Dashboard:</strong> High-density operator interface with customizable widget layouts.</li>
+        </ul>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

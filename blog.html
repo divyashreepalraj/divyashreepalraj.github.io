@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog & Technical Articles | Divya Shree P</title>
+  <meta name="description" content="Technical articles on design systems, CSS BEM architecture, UI engineering, and web performance by Divya Shree P.">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('divya_portfolio_theme');
+      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', savedTheme || (systemDark ? 'dark' : 'dark'));
+    })();
+  </script>
+</head>
+<body>
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress-container">
+    <div class="scroll-progress-bar"></div>
+  </div>
+
+  <header class="header scrolled" role="banner">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <span class="text-gradient">Divya Shree P</span>
+        <span class="logo-dot"></span>
+      </a>
+
+      <nav class="nav-menu">
+        <a href="index.html#hero" class="nav-link">Home</a>
+        <a href="index.html#about" class="nav-link">About</a>
+        <a href="project.html" class="nav-link">Projects</a>
+        <a href="blog.html" class="nav-link active">Blog</a>
+        <a href="index.html#contact" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="cmd-trigger-btn" data-action="command-palette">
+          <span>Search</span> <span class="kbd">Ctrl K</span>
+        </button>
+        <button class="btn-icon" data-action="toggle-theme">
+          <span class="theme-icon">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          </span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main style="padding-top: 140px; min-height: 80vh;" class="container">
+    <div class="section-header reveal-up">
+      <span class="section-tag">Technical Writing</span>
+      <h1 class="section-title">Articles & Insights</h1>
+      <p class="section-description text-secondary">
+        Articles on modular CSS architecture, performance engineering, and evolving from UI design to full engineering.
+      </p>
+
+      <div class="flex gap-2" style="margin-top: 1.5rem; flex-wrap: wrap;">
+        <button class="skill-tab-btn active" data-blog-filter="all">All Topics (5)</button>
+        <button class="skill-tab-btn" data-blog-filter="engineering">Engineering (2)</button>
+        <button class="skill-tab-btn" data-blog-filter="career">Career & Growth (1)</button>
+        <button class="skill-tab-btn" data-blog-filter="performance">Performance (1)</button>
+        <button class="skill-tab-btn" data-blog-filter="accessibility">Accessibility (1)</button>
+      </div>
+
+      <div style="margin-top: 1.5rem; max-width: 450px;">
+        <input type="text" id="blog-search-input" class="form-input" placeholder="Search by title, tag (#BEM, #CSS3)..." aria-label="Search articles">
+      </div>
+    </div>
+
+    <div class="blog-section-container reveal-up">
+      <!-- Dynamically Rendered by blog.js -->
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <div>Built with HTML5, CSS3, & Vanilla JavaScript ES6+.</div>
+      <div>Designed & Developed by <strong>Divya Shree P</strong>.</div>
+    </div>
+  </footer>
+
+  <script type="module" src="assets/js/app.js"></script>
+</body>
+</html>

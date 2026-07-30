@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Divya Shree P | UI Engineer & Frontend Developer</title>
+  <meta name="description" content="Portfolio of Divya Shree P - UI Engineer, Frontend Developer, and Future Full Stack Developer. Specializing in design systems, modular CSS, high performance, and accessible web application engineering.">
+  <meta name="keywords" content="Divya Shree P, UI Engineer, Frontend Developer, Design Systems, Full Stack Developer, HTML5, CSS3, JavaScript, BEM, Performance, Accessibility">
+  <meta name="author" content="Divya Shree Palraj">
+  
+  <!-- Open Graph / Social Meta -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Divya Shree P | UI Engineer & Frontend Developer">
+  <meta property="og:description" content="A designer who evolved into an engineer. Crafting high-performance, accessible digital products with senior-level frontend precision.">
+  <meta property="og:url" content="https://divyashree.dev">
+  
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Divya Shree P | UI Engineer & Frontend Developer">
+  <meta name="twitter:description" content="A designer who evolved into an engineer. Crafting high-performance, accessible digital products.">
+
+  <!-- Manifest & Fonts -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Master Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- Zero-Flash Theme Script -->
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('divya_portfolio_theme');
+      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = savedTheme || (systemDark ? 'dark' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+
+  <!-- Structured Data JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Divya Shree P",
+    "jobTitle": "UI Engineer / Frontend Developer",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Digient Technologies"
+    },
+    "knowsAbout": ["UI Engineering", "Frontend Development", "Design Systems", "HTML5", "CSS3", "JavaScript"],
+    "url": "https://divyashree.dev"
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress-container">
+    <div class="scroll-progress-bar"></div>
+  </div>
+
+  <!-- Header Navigation -->
+  <header class="header" role="banner">
+    <div class="container nav-container">
+      <a href="#hero" class="logo" aria-label="Divya Shree P Portfolio Home">
+        <span class="text-gradient">Divya Shree P</span>
+        <span class="logo-dot"></span>
+      </a>
+
+      <nav class="nav-menu" role="navigation" aria-label="Main Navigation">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#process" class="nav-link">Process</a>
+        <a href="#github" class="nav-link">GitHub</a>
+        <a href="#blog" class="nav-link">Blog</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="cmd-trigger-btn" data-action="command-palette" aria-label="Open command palette (Ctrl + K)">
+          <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          <span class="cmd-text">Search</span>
+          <span class="kbd">Ctrl K</span>
+        </button>
+
+        <button class="btn-icon" data-action="toggle-theme" aria-label="Toggle dark/light mode">
+          <span class="theme-icon">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          </span>
+        </button>
+
+        <button class="mobile-menu-toggle btn-icon" aria-label="Toggle mobile menu" aria-expanded="false">
+          <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" role="main">
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="hero section">
+      <div class="hero-mesh-bg"></div>
+      <div class="container hero-grid">
+        <div class="hero-content reveal-left">
+          <div class="hero-badge">
+            <span class="pulse-dot"></span>
+            <span>Available for UI Engineering Roles</span>
+          </div>
+
+          <h1 class="hero-title">
+            Divya Shree P
+          </h1>
+
+          <div class="hero-subtitle">
+            I am a <span class="typing-target text-gradient">UI Engineer</span><span class="typing-cursor"></span>
+          </div>
+
+          <p class="hero-description text-secondary">
+            A designer who evolved into an engineer. Handcrafting production-grade digital products with senior-level precision, modular CSS architecture, WCAG 2.2 AA accessibility, and 100/100 performance.
+          </p>
+
+          <div class="hero-cta">
+            <a href="#projects" class="btn btn-primary magnetic">
+              View Projects
+              <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </a>
+            <a href="resume/" class="btn btn-secondary magnetic">
+              Download Resume
+              <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal-right">
+          <div class="portrait-wrapper">
+            <div class="portrait-inner">
+              <div class="portrait-avatar">DSP</div>
+              <h2 style="font-size: var(--font-size-lg); margin-bottom: 0.25rem;">Divya Shree P</h2>
+              <span class="badge badge-accent">UI Engineer</span>
+            </div>
+
+            <div class="floating-card floating-card-1">
+              <span style="font-size: 1.25rem;">🎨</span>
+              <div>
+                <div style="font-weight: 600; font-size: 0.85rem;">UI/UX Design</div>
+                <div style="font-size: 0.75rem; color: var(--text-muted);">Systems & Ergonomics</div>
+              </div>
+            </div>
+
+            <div class="floating-card floating-card-2">
+              <span style="font-size: 1.25rem;">⚡</span>
+              <div>
+                <div style="font-weight: 600; font-size: 0.85rem;">Frontend Architecture</div>
+                <div style="font-size: 0.75rem; color: var(--text-muted);">HTML5 / CSS3 / ES6+</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT / EVOLUTION JOURNEY -->
+    <section id="about" class="section">
+      <div class="container">
+        <div class="section-header text-center reveal-up">
+          <span class="section-tag">Career Trajectory</span>
+          <h2 class="section-title">A Designer Who Evolved Into an Engineer</h2>
+          <p class="section-description text-secondary" style="margin: 0 auto;">
+            Transforming visual design precision into scalable, maintainable, production-ready frontend code.
+          </p>
+        </div>
+
+        <div class="journey-flow reveal-up">
+          <div class="journey-step shimmer">
+            <div class="journey-step-num">STAGE 01</div>
+            <h3 class="journey-step-title">UI Designer</h3>
+            <p style="font-size: var(--font-size-xs); color: var(--text-muted);">User research, wireframing, high-fidelity UI design in Figma.</p>
+          </div>
+
+          <div class="journey-step shimmer">
+            <div class="journey-step-num">STAGE 02</div>
+            <h3 class="journey-step-title">Design Systems</h3>
+            <p style="font-size: var(--font-size-xs); color: var(--text-muted);">Tokenization, component guidelines, spatial grids & scales.</p>
+          </div>
+
+          <div class="journey-step shimmer">
+            <div class="journey-step-num">STAGE 03</div>
+            <h3 class="journey-step-title">Frontend Dev</h3>
+            <p style="font-size: var(--font-size-xs); color: var(--text-muted);">Handcrafting semantic HTML5, modular CSS BEM, and ES6+ JS.</p>
+          </div>
+
+          <div class="journey-step shimmer">
+            <div class="journey-step-num">STAGE 04</div>
+            <h3 class="journey-step-title">UI Engineering</h3>
+            <p style="font-size: var(--font-size-xs); color: var(--text-muted);">DOM performance optimization, 60fps micro-animations, accessibility.</p>
+          </div>
+
+          <div class="journey-step shimmer" style="border-color: var(--accent-primary);">
+            <div class="journey-step-num" style="color: var(--accent-tertiary);">STAGE 05</div>
+            <h3 class="journey-step-title text-gradient">Future Full Stack</h3>
+            <p style="font-size: var(--font-size-xs); color: var(--text-muted);">Expanding into scalable backends, Node.js, and API architecture.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE SECTION -->
+    <section id="experience" class="section">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <span class="section-tag">Professional Experience</span>
+          <h2 class="section-title">Industry Track Record</h2>
+          <p class="section-description text-secondary">
+            4 years of dedicated industry experience designing and engineering high-impact web products.
+          </p>
+        </div>
+
+        <div class="timeline reveal-up">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="exp-card shimmer">
+              <div class="exp-header">
+                <div>
+                  <h3 class="exp-role">UI Designer & Frontend Engineer</h3>
+                  <div class="exp-company">Digient Technologies</div>
+                </div>
+                <div class="exp-duration">Nearly 4 Years (Present)</div>
+              </div>
+              <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+                Collaborated cross-functionally with senior developers, product managers, and operators to design and build high-frequency iGaming platforms, casino content management systems (CMS), and real-time gaming dashboards.
+              </p>
+              <div class="exp-list">
+                <li>Architected component design systems and wireframe prototypes using Figma and CSS design tokens.</li>
+                <li>Developed responsive web interfaces using HTML5, CSS3, Bootstrap, and Vanilla JavaScript.</li>
+                <li>Spearheaded front-end optimization for complex administrative dashboards, reducing page render times.</li>
+                <li>Bridged design-to-development workflows, ensuring pixel-perfect execution across all viewports.</li>
+              </div>
+              <div class="flex flex-wrap gap-2" style="margin-top: 1.5rem;">
+                <span class="badge">Gaming Platforms</span>
+                <span class="badge">Casino CMS</span>
+                <span class="badge">Dashboards</span>
+                <span class="badge">HTML5/CSS3</span>
+                <span class="badge">Developer Collaboration</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS SECTION -->
+    <section id="skills" class="section">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <span class="section-tag">Technical Competencies</span>
+          <h2 class="section-title">Skill Matrix & Toolkit</h2>
+          <p class="section-description text-secondary">
+            Interactive breakdown of technologies and design engineering methodologies.
+          </p>
+        </div>
+
+        <div class="skills-grid reveal-up">
+          <div class="skill-card shimmer">
+            <div class="skill-icon">🌐</div>
+            <div>
+              <h3 style="font-size: var(--font-size-base); font-weight: 600;">HTML5 & Semantic Markup</h3>
+              <p style="font-size: var(--font-size-xs); color: var(--text-muted);">WCAG 2.2 AA, ARIA roles, clean DOM hierarchy</p>
+            </div>
+          </div>
+
+          <div class="skill-card shimmer">
+            <div class="skill-icon">🎨</div>
+            <div>
+              <h3 style="font-size: var(--font-size-base); font-weight: 600;">Modern CSS3 & BEM</h3>
+              <p style="font-size: var(--font-size-xs); color: var(--text-muted);">Fluid typography, clamp(), CSS variables, Grid/Flex</p>
+            </div>
+          </div>
+
+          <div class="skill-card shimmer">
+            <div class="skill-icon">⚡</div>
+            <div>
+              <h3 style="font-size: var(--font-size-base); font-weight: 600;">Vanilla JavaScript ES6+</h3>
+              <p style="font-size: var(--font-size-xs); color: var(--text-muted);">DOM manipulation, ES Modules, Async/Fetch, Observers</p>
+            </div>
+          </div>
+
+          <div class="skill-card shimmer">
+            <div class="skill-icon">📐</div>
+            <div>
+              <h3 style="font-size: var(--font-size-base); font-weight: 600;">UI/UX Design Systems</h3>
+              <p style="font-size: var(--font-size-xs); color: var(--text-muted);">Figma, Wireframing, Ergonomics, Tokenization</p>
+            </div>
+          </div>
+
+          <div class="skill-card shimmer">
+            <div class="skill-icon">🐙</div>
+            <div>
+              <h3 style="font-size: var(--font-size-base); font-weight: 600;">Version Control & Workflows</h3>
+              <p style="font-size: var(--font-size-xs); color: var(--text-muted);">Git, GitHub actions, branching strategies, PR reviews</p>
+            </div>
+          </div>
+
+          <div class="skill-card shimmer">
+            <div class="skill-icon">🤖</div>
+            <div>
+              <h3 style="font-size: var(--font-size-base); font-weight: 600;">AI Tools & Efficiency</h3>
+              <p style="font-size: var(--font-size-xs); color: var(--text-muted);">Prompt engineering, AI coding tools, workflow automation</p>
+            </div>
+          </div>
+
+          <div class="skill-card shimmer" style="border-color: var(--accent-primary);">
+            <div class="skill-icon" style="background: var(--accent-glow); color: var(--accent-tertiary);">🚀</div>
+            <div>
+              <h3 style="font-size: var(--font-size-base); font-weight: 600;" class="text-gradient">Currently Learning</h3>
+              <p style="font-size: var(--font-size-xs); color: var(--text-muted);">Node.js, Full Stack Architecture, Modern Frameworks</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects" class="section">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <span class="section-tag">Portfolio Showcase</span>
+          <h2 class="section-title">Development & Design Projects</h2>
+          <p class="section-description text-secondary">
+            Real production engineering and design deliverables organized by specialized discipline.
+          </p>
+
+          <div class="flex gap-2" style="margin-top: 1.5rem; flex-wrap: wrap;">
+            <button class="skill-tab-btn active" data-project-filter="all">All Disciplines (8)</button>
+            <button class="skill-tab-btn" data-project-filter="development">Frontend Systems (3)</button>
+            <button class="skill-tab-btn" data-project-filter="architecture">Design Systems (2)</button>
+            <button class="skill-tab-btn" data-project-filter="design">UI/UX Case Studies (3)</button>
+          </div>
+        </div>
+
+        <div class="projects-section-container">
+          <!-- Dynamically Rendered by projects.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- DESIGN PROCESS ENGINE -->
+    <section id="process" class="section">
+      <div class="container">
+        <div class="section-header text-center reveal-up">
+          <span class="section-tag">Engineering Methodology</span>
+          <h2 class="section-title">End-to-End Design & Code Process</h2>
+          <p class="section-description text-secondary" style="margin: 0 auto;">
+            A structured 7-step pipeline ensuring zero design-code mismatch.
+          </p>
+        </div>
+
+        <div class="journey-flow reveal-up" style="grid-template-columns: repeat(7, 1fr);">
+          <div class="journey-step shimmer">
+            <div class="journey-step-num">01</div>
+            <h4 style="font-size: 0.9rem;">Research</h4>
+          </div>
+          <div class="journey-step shimmer">
+            <div class="journey-step-num">02</div>
+            <h4 style="font-size: 0.9rem;">Wireframe</h4>
+          </div>
+          <div class="journey-step shimmer">
+            <div class="journey-step-num">03</div>
+            <h4 style="font-size: 0.9rem;">Prototype</h4>
+          </div>
+          <div class="journey-step shimmer">
+            <div class="journey-step-num">04</div>
+            <h4 style="font-size: 0.9rem;">UI Specs</h4>
+          </div>
+          <div class="journey-step shimmer">
+            <div class="journey-step-num">05</div>
+            <h4 style="font-size: 0.9rem;">Code</h4>
+          </div>
+          <div class="journey-step shimmer">
+            <div class="journey-step-num">06</div>
+            <h4 style="font-size: 0.9rem;">Testing</h4>
+          </div>
+          <div class="journey-step shimmer">
+            <div class="journey-step-num">07</div>
+            <h4 style="font-size: 0.9rem;">Deployment</h4>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GITHUB SECTION -->
+    <section id="github" class="section">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <span class="section-tag">Code Activity</span>
+          <h2 class="section-title">GitHub Contributions & Repositories</h2>
+          <p class="section-description text-secondary">
+            Continuous engineering output, clean commits, and open-source contributions.
+          </p>
+        </div>
+
+        <div class="github-heatmap reveal-up">
+          <h4 style="margin-bottom: 1rem; font-size: var(--font-size-base);">Simulated 2026 Commit Activity</h4>
+          <svg class="heatmap-svg" viewBox="0 0 720 70">
+            <g transform="translate(10, 10)">
+              <!-- SVG Contribution Heatmap Representation -->
+              <rect x="0" y="0" width="10" height="10" fill="var(--bg-color-tertiary)" rx="2"/>
+              <rect x="15" y="0" width="10" height="10" fill="var(--accent-primary)" rx="2"/>
+              <rect x="30" y="0" width="10" height="10" fill="var(--accent-primary)" rx="2"/>
+              <rect x="45" y="0" width="10" height="10" fill="var(--bg-color-tertiary)" rx="2"/>
+              <rect x="60" y="0" width="10" height="10" fill="var(--accent-secondary)" rx="2"/>
+              <!-- Heatmap Grid Row simulation -->
+              <text x="0" y="45" fill="var(--text-muted)" font-size="10" font-family="monospace">Jan</text>
+              <text x="120" y="45" fill="var(--text-muted)" font-size="10" font-family="monospace">Mar</text>
+              <text x="240" y="45" fill="var(--text-muted)" font-size="10" font-family="monospace">May</text>
+              <text x="360" y="45" fill="var(--text-muted)" font-size="10" font-family="monospace">Jul</text>
+            </g>
+          </svg>
+          <div class="flex items-center justify-between" style="margin-top: 1rem; font-size: var(--font-size-xs); color: var(--text-muted);">
+            <span>480+ Commits in 2026</span>
+            <a href="https://github.com/divyashree-p" target="_blank" rel="noopener noreferrer" style="color: var(--accent-primary);">View GitHub Profile →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOG SECTION -->
+    <section id="blog" class="section">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <span class="section-tag">Engineering Insights</span>
+          <h2 class="section-title">Articles & Technical Writing</h2>
+          <p class="section-description text-secondary">
+            Documenting frontend architecture, design systems, web performance, and accessibility.
+          </p>
+
+          <div class="flex gap-2" style="margin-top: 1.5rem; flex-wrap: wrap;">
+            <button class="skill-tab-btn active" data-blog-filter="all">All Topics (5)</button>
+            <button class="skill-tab-btn" data-blog-filter="engineering">Engineering (2)</button>
+            <button class="skill-tab-btn" data-blog-filter="career">Career & Growth (1)</button>
+            <button class="skill-tab-btn" data-blog-filter="performance">Performance (1)</button>
+            <button class="skill-tab-btn" data-blog-filter="accessibility">Accessibility (1)</button>
+          </div>
+
+          <div style="margin-top: 1.5rem; max-width: 400px;">
+            <input type="text" id="blog-search-input" class="form-input" placeholder="Search articles by topic or tag..." aria-label="Search articles">
+          </div>
+        </div>
+
+        <div class="blog-section-container">
+          <!-- Dynamically Rendered by blog.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="section-header text-center reveal-up">
+          <span class="section-tag">Get In Touch</span>
+          <h2 class="section-title">Let’s Build Something Exceptional</h2>
+          <p class="section-description text-secondary" style="margin: 0 auto;">
+            Open to senior UI Engineering, Frontend Development, and Full Stack opportunities.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-8 reveal-up" style="max-width: 960px; margin: 0 auto;">
+          <div class="glass-card">
+            <h3 style="font-size: var(--font-size-xl); margin-bottom: 1rem;">Direct Contact</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+              Feel free to reach out directly. Enquiries submitted on this form are delivered straight to my primary inbox.
+            </p>
+
+            <div class="flex flex-col gap-4">
+              <div>
+                <span class="text-muted font-mono" style="font-size: var(--font-size-xs);">PRIMARY EMAIL</span>
+                <div style="font-weight: 600;">
+                  <a href="mailto:divyashree.palraj@gmail.com" style="color: var(--accent-primary);">divyashree.palraj@gmail.com</a>
+                </div>
+              </div>
+              <div>
+                <span class="text-muted font-mono" style="font-size: var(--font-size-xs);">LOCATION</span>
+                <div style="font-weight: 600;">India</div>
+              </div>
+              <div>
+                <span class="text-muted font-mono" style="font-size: var(--font-size-xs);">PROFESSIONAL NETWORKS</span>
+                <div class="flex gap-3" style="margin-top: 0.5rem;">
+                  <a href="https://github.com/divyashree-p" target="_blank" rel="noopener noreferrer" class="btn-icon" aria-label="GitHub Profile" title="GitHub: @divyashree-p">🐙</a>
+                  <a href="https://linkedin.com/in/divyashree-p" target="_blank" rel="noopener noreferrer" class="btn-icon" aria-label="LinkedIn Profile" title="LinkedIn: Divya Shree P">💼</a>
+                  <a href="https://behance.net/divyashree-p" target="_blank" rel="noopener noreferrer" class="btn-icon" aria-label="Behance Portfolio" title="Behance: Divya Shree P">🎨</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="glass-card">
+            <form id="contact-form" action="https://formspree.io/f/divyashree.palraj@gmail.com" method="POST" novalidate>
+              <div class="form-group">
+                <label for="contact-name" class="form-label">Name</label>
+                <input type="text" id="contact-name" name="name" class="form-input" placeholder="Your full name" required>
+                <span class="form-error">Please enter your name.</span>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-email" class="form-label">Email</label>
+                <input type="email" id="contact-email" name="email" class="form-input" placeholder="name@company.com" required>
+                <span class="form-error">Please enter a valid email address.</span>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-message" class="form-label">Message</label>
+                <textarea id="contact-message" name="message" class="form-textarea" rows="4" placeholder="Tell me about your project or enquiry..." required></textarea>
+                <span class="form-error">Please enter your message.</span>
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="width: 100%;">
+                Send Message →
+              </button>
+
+              <div id="contact-success" class="badge badge-accent" style="display: none; margin-top: 1rem; width: 100%; justify-content: center; padding: 0.75rem;"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="container footer-content">
+      <div>
+        Built with HTML5, CSS3, & Vanilla JavaScript ES6+.
+      </div>
+      <div>
+        Designed & Developed by <strong style="color: var(--text-primary);">Divya Shree P</strong>. © <span id="current-year">2026</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top btn-icon" aria-label="Back to top">
+    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+  </button>
+
+  <!-- Master JavaScript App Module -->
+  <script type="module" src="assets/js/app.js"></script>
+
+  <!-- Auto Current Year Script -->
+  <script>
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
