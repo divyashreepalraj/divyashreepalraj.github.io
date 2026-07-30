@@ -1,0 +1,141 @@
+/* ==========================================================================
+   DESIGN SYSTEM TOKENS & CSS VARIABLES
+   Divya Shree P - Portfolio Website
+   ========================================================================== */
+
+:root {
+  /* Color Palette - Dark Mode (Default) */
+  --bg-color: #090d16;
+  --bg-color-secondary: #111827;
+  --bg-color-tertiary: #1f293d;
+  --bg-card: rgba(17, 24, 39, 0.7);
+  --bg-card-hover: rgba(31, 41, 61, 0.85);
+  --bg-glass: rgba(15, 23, 42, 0.65);
+  --bg-glass-border: rgba(255, 255, 255, 0.08);
+
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --text-inverse: #0f172a;
+
+  --accent-primary: #6366f1;       /* Indigo */
+  --accent-primary-hover: #4f46e5;
+  --accent-secondary: #06b6d4;     /* Cyan */
+  --accent-tertiary: #ec4899;      /* Pink accent */
+  --accent-glow: rgba(99, 102, 241, 0.25);
+  --accent-gradient: linear-gradient(135deg, #6366f1 0%, #06b6d4 50%, #ec4899 100%);
+  --accent-gradient-text: linear-gradient(135deg, #818cf8 0%, #38bdf8 50%, #f472b6 100%);
+
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+
+  --border-color: rgba(255, 255, 255, 0.1);
+  --border-color-hover: rgba(99, 102, 241, 0.4);
+
+  /* Typography Scale (Fluid using clamp) */
+  --font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-family-heading: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-family-mono: 'JetBrains Mono', 'Fira Code', Consolas, Monaco, 'Courier New', monospace;
+
+  --font-size-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.8125rem);
+  --font-size-sm: clamp(0.84rem, 0.8rem + 0.3vw, 0.9375rem);
+  --font-size-base: clamp(0.95rem, 0.9rem + 0.4vw, 1.0625rem);
+  --font-size-lg: clamp(1.1rem, 1.05rem + 0.6vw, 1.25rem);
+  --font-size-xl: clamp(1.3rem, 1.2rem + 0.9vw, 1.5625rem);
+  --font-size-2xl: clamp(1.6rem, 1.45rem + 1.4vw, 2.125rem);
+  --font-size-3xl: clamp(2.1rem, 1.8rem + 2.1vw, 3rem);
+  --font-size-display: clamp(2.8rem, 2.2rem + 3.5vw, 4.5rem);
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --line-height-tight: 1.15;
+  --line-height-heading: 1.25;
+  --line-height-base: 1.65;
+
+  /* Spacing Scale */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+
+  /* Border Radius */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Elevation & Shadows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 30px var(--accent-glow);
+  --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+
+  /* Animation & Transitions */
+  --ease-out-cubic: cubic-bezier(0.33, 1, 0.68, 1);
+  --ease-in-out-cubic: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-elastic: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --transition-fast: 0.15s var(--ease-out-cubic);
+  --transition-normal: 0.3s var(--ease-out-cubic);
+  --transition-slow: 0.5s var(--ease-out-cubic);
+
+  /* Layout Boundaries */
+  --container-max: 1240px;
+  --container-wide: 1440px;
+  --container-reading: 780px;
+
+  /* Elevation Z-Index */
+  --z-back: -1;
+  --z-normal: 1;
+  --z-sticky: 100;
+  --z-header: 500;
+  --z-cursor: 9000;
+  --z-modal: 9999;
+}
+
+/* Light Theme Overrides */
+[data-theme="light"] {
+  --bg-color: #f8fafc;
+  --bg-color-secondary: #ffffff;
+  --bg-color-tertiary: #f1f5f9;
+  --bg-card: rgba(255, 255, 255, 0.85);
+  --bg-card-hover: rgba(255, 255, 255, 0.95);
+  --bg-glass: rgba(255, 255, 255, 0.75);
+  --bg-glass-border: rgba(0, 0, 0, 0.08);
+
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --text-inverse: #f8fafc;
+
+  --accent-primary: #4f46e5;
+  --accent-primary-hover: #4338ca;
+  --accent-secondary: #0284c7;
+  --accent-tertiary: #db2777;
+  --accent-glow: rgba(79, 70, 229, 0.15);
+  --accent-gradient: linear-gradient(135deg, #4f46e5 0%, #0284c7 50%, #db2777 100%);
+  --accent-gradient-text: linear-gradient(135deg, #4338ca 0%, #0369a1 50%, #be185d 100%);
+
+  --border-color: rgba(0, 0, 0, 0.1);
+  --border-color-hover: rgba(79, 70, 229, 0.4);
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.12);
+  --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
+}

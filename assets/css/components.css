@@ -1,0 +1,420 @@
+/* ==========================================================================
+   REUSABLE UI COMPONENTS
+   Divya Shree P - Portfolio Website
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Buttons
+   -------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 0.8rem 1.6rem;
+  border-radius: var(--radius-md);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-base);
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--accent-gradient);
+  color: #ffffff;
+  box-shadow: 0 4px 15px var(--accent-glow);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px var(--accent-glow);
+  color: #ffffff;
+}
+
+.btn-secondary {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(12px);
+}
+
+.btn-secondary:hover {
+  background: var(--bg-color-tertiary);
+  border-color: var(--border-color-hover);
+  transform: translateY(-2px);
+}
+
+.btn-icon {
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.btn-icon:hover {
+  color: var(--accent-primary);
+  border-color: var(--border-color-hover);
+  background: var(--bg-card-hover);
+  transform: scale(1.05);
+}
+
+/* --------------------------------------------------------------------------
+   Badges & Tech Stack Pills
+   -------------------------------------------------------------------------- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-family: var(--font-family-mono);
+  font-weight: var(--font-weight-medium);
+  background: var(--bg-color-tertiary);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+}
+
+.badge-accent {
+  background: var(--accent-glow);
+  color: var(--accent-primary);
+  border-color: var(--border-color-hover);
+}
+
+/* --------------------------------------------------------------------------
+   Glassmorphic Cards
+   -------------------------------------------------------------------------- */
+.glass-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card:hover {
+  border-color: var(--border-color-hover);
+  box-shadow: var(--shadow-card);
+}
+
+/* --------------------------------------------------------------------------
+   Timeline (Career Experience & Visual Journey)
+   -------------------------------------------------------------------------- */
+.timeline {
+  position: relative;
+  padding-left: var(--space-8);
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--accent-primary), var(--accent-secondary), var(--accent-tertiary));
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: var(--space-10);
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: calc(-1 * var(--space-8) + 8px);
+  top: 4px;
+  width: 16px;
+  height: 16px;
+  border-radius: var(--radius-full);
+  background: var(--bg-color);
+  border: 3px solid var(--accent-primary);
+  box-shadow: 0 0 10px var(--accent-glow);
+  transition: all var(--transition-fast);
+}
+
+.timeline-item:hover .timeline-dot {
+  background: var(--accent-primary);
+  transform: scale(1.25);
+}
+
+/* --------------------------------------------------------------------------
+   Command Palette (Ctrl + K Modal)
+   -------------------------------------------------------------------------- */
+.command-palette-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(9, 13, 22, 0.8);
+  backdrop-filter: blur(8px);
+  z-index: var(--z-modal);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 12vh;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-normal);
+}
+
+.command-palette-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.command-dialog {
+  width: 100%;
+  max-width: 640px;
+  background: var(--bg-color-secondary);
+  border: 1px solid var(--border-color-hover);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg), 0 0 40px var(--accent-glow);
+  overflow: hidden;
+  transform: translateY(-20px) scale(0.96);
+  transition: transform var(--transition-normal);
+}
+
+.command-palette-backdrop.active .command-dialog {
+  transform: translateY(0) scale(1);
+}
+
+.command-header {
+  display: flex;
+  align-items: center;
+  padding: var(--space-4) var(--space-6);
+  border-bottom: 1px solid var(--border-color);
+  gap: var(--space-3);
+}
+
+.command-header svg {
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.command-input {
+  width: 100%;
+  background: transparent;
+  color: var(--text-primary);
+  font-size: var(--font-size-lg);
+}
+
+.command-input::placeholder {
+  color: var(--text-muted);
+}
+
+.command-results {
+  max-height: 360px;
+  overflow-y: auto;
+  padding: var(--space-2);
+}
+
+.command-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.command-item:hover,
+.command-item.selected {
+  background: var(--bg-color-tertiary);
+  color: var(--text-primary);
+}
+
+.command-item-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.command-item-badge {
+  font-size: var(--font-size-xs);
+  font-family: var(--font-family-mono);
+  padding: 0.15rem 0.4rem;
+  border-radius: var(--radius-xs);
+  background: var(--bg-color);
+  color: var(--text-muted);
+  border: 1px solid var(--border-color);
+}
+
+.command-footer {
+  padding: var(--space-3) var(--space-6);
+  background: var(--bg-color);
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+  font-family: var(--font-family-mono);
+}
+
+.kbd {
+  padding: 0.1rem 0.35rem;
+  border-radius: var(--radius-xs);
+  background: var(--bg-color-tertiary);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+}
+
+/* --------------------------------------------------------------------------
+   Custom Smooth Cursor
+   -------------------------------------------------------------------------- */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background-color: var(--accent-primary);
+  border-radius: var(--radius-full);
+  pointer-events: none;
+  z-index: var(--z-cursor);
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, background-color 0.2s;
+}
+
+.cursor-follower {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--accent-primary);
+  border-radius: var(--radius-full);
+  pointer-events: none;
+  z-index: calc(var(--z-cursor) - 1);
+  transform: translate(-50%, -50%);
+  opacity: 0.6;
+  transition: width 0.25s, height 0.25s, border-color 0.25s, opacity 0.25s;
+}
+
+.cursor-hover .custom-cursor {
+  width: 14px;
+  height: 14px;
+  background-color: var(--accent-secondary);
+}
+
+.cursor-hover .cursor-follower {
+  width: 50px;
+  height: 50px;
+  border-color: var(--accent-secondary);
+  opacity: 0.8;
+  background: var(--accent-glow);
+}
+
+@media (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .custom-cursor,
+  .cursor-follower {
+    display: none !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Scroll Progress Bar
+   -------------------------------------------------------------------------- */
+.scroll-progress-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  z-index: calc(var(--z-header) + 1);
+  background: transparent;
+}
+
+.scroll-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: var(--accent-gradient);
+  transition: width 0.1s linear;
+}
+
+/* --------------------------------------------------------------------------
+   Back to Top Button
+   -------------------------------------------------------------------------- */
+.back-to-top {
+  position: fixed;
+  bottom: var(--space-6);
+  right: var(--space-6);
+  z-index: var(--z-sticky);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all var(--transition-normal);
+}
+
+.back-to-top.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   Form Components
+   -------------------------------------------------------------------------- */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-bottom: var(--space-5);
+}
+
+.form-label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  background: var(--bg-color-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.form-error {
+  font-size: var(--font-size-xs);
+  color: var(--danger);
+  display: none;
+}
+
+.form-group.error .form-error {
+  display: block;
+}
+
+.form-group.error .form-input,
+.form-group.error .form-textarea {
+  border-color: var(--danger);
+}
