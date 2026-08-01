@@ -88,6 +88,11 @@
     width: 100%;
 }
 
+.nav_btn {
+padding: 0.55rem 1.25rem 0.35rem;
+    font-size: 15px;
+}
+
 .nav-actions {
     display: flex;
     align-items: center;
