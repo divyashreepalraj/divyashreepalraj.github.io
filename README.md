@@ -10,7 +10,6 @@ Designed with performance, accessibility, and clean UI in mind, this portfolio h
 
 ## ✨ Features
 
--  Light & Dark Theme Toggle
 -  Interactive Hero Section
 -  Custom Cursor
 -  Smooth Hover Animations & Micro Interactions
