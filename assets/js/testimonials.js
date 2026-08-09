@@ -112,7 +112,7 @@ export const initTestimonials = () => {
 
     let currentIndex = 0;
 
-    let cardsPerView = 3;
+    let cardsPerView = 2;
 
     let autoSlideTimer = null;
 
@@ -127,17 +127,11 @@ export const initTestimonials = () => {
 
     const getCardsPerView = () => {
 
-        const width = window.innerWidth;
+        if (window.innerWidth >= 768) {
+        return 2;
+    }
 
-        if (width >= 1024) {
-            return 3;
-        }
-
-        if (width >= 768) {
-            return 2;
-        }
-
-        return 1;
+    return 1;
 
     };
 
@@ -175,15 +169,14 @@ export const initTestimonials = () => {
 
     const getPageCount = () => {
 
-        return Math.max(
-            1,
-            Math.ceil(
-                cards.length / cardsPerView
-            )
-        );
+    return Math.max(
+        1,
+        Math.ceil(
+            cards.length / cardsPerView
+        )
+    );
 
-    };
-
+};
 
     /* =====================================================
        CURRENT PAGE
@@ -191,11 +184,17 @@ export const initTestimonials = () => {
 
     const getCurrentPage = () => {
 
-        return Math.floor(
-            currentIndex / cardsPerView
-        );
+    const maxIndex = getMaxIndex();
 
-    };
+    if (currentIndex >= maxIndex) {
+        return getPageCount() - 1;
+    }
+
+    return Math.floor(
+        currentIndex / cardsPerView
+    );
+
+};
 
 
     /* =====================================================
