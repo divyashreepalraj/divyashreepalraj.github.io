@@ -1,0 +1,146 @@
+/* =====================================================
+   SKILLS PROGRESS SECTION
+===================================================== */
+
+.skills-progress-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.skills-group {
+  padding: 1.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 1.25rem;
+  background: var(--bg-secondary);
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.skills-group:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent-primary);
+  box-shadow: 0 15px 40px var(--accent-glow);
+}
+
+.skills-group-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.skills-group-icon {
+  width: 3rem;
+  height: 3rem;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+
+  border-radius: 0.75rem;
+  background: var(--accent-glow);
+
+  font-size: 1.4rem;
+}
+
+.skills-group-header h3 {
+  margin: 0 0 0.25rem;
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+}
+
+.skills-group-header p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: var(--font-size-xs);
+}
+
+
+/* Individual skill */
+
+.skill-progress {
+  margin-bottom: 1.35rem;
+}
+
+.skill-progress:last-child {
+  margin-bottom: 0;
+}
+
+.skill-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 0.5rem;
+
+  font-size: var(--font-size-sm);
+}
+
+.skill-info span:first-child {
+  font-weight: 600;
+}
+
+.skill-info span:last-child {
+  color: var(--text-muted);
+  font-size: var(--font-size-xs);
+}
+
+
+/* Progress bar */
+
+.progress-track {
+  width: 100%;
+  height: 7px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #151d2d;
+}
+
+.progress-fill {
+  width: 0;
+  height: 100%;
+
+  border-radius: inherit;
+
+  background: linear-gradient(
+    90deg,
+    var(--accent-primary),
+    var(--accent-tertiary)
+  );
+
+  box-shadow: 0 0 12px var(--accent-glow);
+
+  transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+/* Learning card */
+
+.skills-learning {
+  border-color: var(--accent-primary);
+}
+
+.skills-learning .progress-fill {
+  background: linear-gradient(
+    90deg,
+    var(--accent-secondary),
+    var(--accent-primary)
+  );
+}
+
+
+/* Responsive */
+
+@media (max-width: 768px) {
+  .skills-progress-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .skills-group {
+    padding: 1.4rem;
+  }
+}

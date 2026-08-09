@@ -4,211 +4,746 @@
  */
 
 export const initTestimonials = () => {
-  const container = document.querySelector('.testimonial-carousel-container');
-  const track = document.querySelector('.testimonial-track');
-  const prevBtn = document.querySelector('.carousel-btn-prev');
-  const nextBtn = document.querySelector('.carousel-btn-next');
-  const dotsContainer = document.querySelector('.carousel-dots');
 
-  if (!container || !track) return;
+    const container = document.querySelector(
+        '.testimonial-carousel-container'
+    );
 
-  const cards = Array.from(track.querySelectorAll('.testimonial-card'));
-  if (cards.length === 0) return;
+    const track = document.querySelector(
+        '.testimonial-track'
+    );
 
-  let currentIndex = 0;
-  let cardsPerView = 3;
-  let autoSlideTimer = null;
-  const AUTOPLAY_INTERVAL = 5000;
+    const prevBtn = document.querySelector(
+        '.carousel-btn-prev'
+    );
 
-  // Reduced motion preference check
-  const isReducedMotion = () => {
-    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  };
+    const nextBtn = document.querySelector(
+        '.carousel-btn-next'
+    );
 
-  // Determine cardsPerView based on window viewport width
-  const getCardsPerView = () => {
-    const width = window.innerWidth;
-    if (width >= 1024) return 3;
-    if (width >= 768) return 2;
-    return 1;
-  };
+    const dotsContainer = document.querySelector(
+        '.carousel-dots'
+    );
 
-  // Total pages or discrete scroll positions
-  const getMaxIndex = () => {
-    return Math.max(0, cards.length - cardsPerView);
-  };
+    if (!container || !track) return;
 
-  const getPageCount = () => {
-    return Math.ceil(cards.length / cardsPerView);
-  };
+    const cards = Array.from(
+        track.querySelectorAll('.testimonial-card')
+    );
 
-  // Create pagination dots
-  const createDots = () => {
-    if (!dotsContainer) return;
-    dotsContainer.innerHTML = '';
-    const pageCount = getPageCount();
+    if (!cards.length) return;
 
-    if (pageCount <= 1) return;
 
-    for (let i = 0; i < pageCount; i++) {
-      const dot = document.createElement('button');
-      dot.className = `carousel-dot ${i === getCurrentPage() ? 'active' : ''}`;
-      dot.setAttribute('type', 'button');
-      dot.setAttribute('aria-label', `Go to testimonial slide ${i + 1}`);
-      dot.setAttribute('role', 'tab');
-      dot.setAttribute('aria-selected', i === getCurrentPage() ? 'true' : 'false');
-      
-      dot.addEventListener('click', () => {
-        // Jump to start card of that page group
-        currentIndex = Math.min(i * cardsPerView, getMaxIndex());
+    /* =====================================================
+       DYNAMIC STAR RATINGS
+    ===================================================== */
+
+    const renderRatings = () => {
+
+        const ratings = document.querySelectorAll(
+            '.testimonial-rating'
+        );
+
+        ratings.forEach((ratingElement) => {
+
+            const rating = Math.max(
+                0,
+                Math.min(
+                    5,
+                    parseFloat(
+                        ratingElement.dataset.rating
+                    ) || 0
+                )
+            );
+
+            ratingElement.innerHTML = '';
+
+            for (let i = 1; i <= 5; i++) {
+
+                const star =
+                    document.createElement('span');
+
+                star.className = 'rating-star';
+
+                /*
+                 * Full star
+                 */
+                if (rating >= i) {
+
+                    star.classList.add('full');
+
+                /*
+                 * Half star
+                 */
+                } else if (rating >= i - 0.5) {
+
+                    star.classList.add('half');
+
+                /*
+                 * Empty star
+                 */
+                } else {
+
+                    star.classList.add('empty');
+
+                }
+
+                star.textContent = '★';
+
+                ratingElement.appendChild(star);
+
+            }
+
+            ratingElement.setAttribute(
+                'aria-label',
+                `${rating} out of 5 stars`
+            );
+
+        });
+
+    };
+
+    renderRatings();
+
+
+    /* =====================================================
+       STATE
+    ===================================================== */
+
+    let currentIndex = 0;
+
+    let cardsPerView = 3;
+
+    let autoSlideTimer = null;
+
+    let resizeTimer = null;
+
+    const AUTOPLAY_INTERVAL = 5000;
+
+
+    /* =====================================================
+       RESPONSIVE CARDS PER VIEW
+    ===================================================== */
+
+    const getCardsPerView = () => {
+
+        const width = window.innerWidth;
+
+        if (width >= 1024) {
+            return 3;
+        }
+
+        if (width >= 768) {
+            return 2;
+        }
+
+        return 1;
+
+    };
+
+
+    /* =====================================================
+       REDUCED MOTION
+    ===================================================== */
+
+    const isReducedMotion = () => {
+
+        return window.matchMedia(
+            '(prefers-reduced-motion: reduce)'
+        ).matches;
+
+    };
+
+
+    /* =====================================================
+       MAX INDEX
+    ===================================================== */
+
+    const getMaxIndex = () => {
+
+        return Math.max(
+            0,
+            cards.length - cardsPerView
+        );
+
+    };
+
+
+    /* =====================================================
+       PAGE COUNT
+    ===================================================== */
+
+    const getPageCount = () => {
+
+        return Math.max(
+            1,
+            Math.ceil(
+                cards.length / cardsPerView
+            )
+        );
+
+    };
+
+
+    /* =====================================================
+       CURRENT PAGE
+    ===================================================== */
+
+    const getCurrentPage = () => {
+
+        return Math.floor(
+            currentIndex / cardsPerView
+        );
+
+    };
+
+
+    /* =====================================================
+       CREATE DOTS
+    ===================================================== */
+
+    const createDots = () => {
+
+        if (!dotsContainer) return;
+
+        dotsContainer.innerHTML = '';
+
+        const pageCount =
+            getPageCount();
+
+        if (pageCount <= 1) return;
+
+
+        for (let i = 0; i < pageCount; i++) {
+
+            const dot =
+                document.createElement('button');
+
+            dot.type = 'button';
+
+            dot.className =
+                `carousel-dot ${
+                    i === getCurrentPage()
+                        ? 'active'
+                        : ''
+                }`;
+
+            dot.setAttribute(
+                'aria-label',
+                `Go to testimonial slide ${i + 1}`
+            );
+
+            dot.setAttribute(
+                'aria-selected',
+                i === getCurrentPage()
+                    ? 'true'
+                    : 'false'
+            );
+
+
+            dot.addEventListener(
+                'click',
+                () => {
+
+                    currentIndex =
+                        Math.min(
+                            i * cardsPerView,
+                            getMaxIndex()
+                        );
+
+                    updateSlider();
+
+                    restartAutoSlide();
+
+                }
+            );
+
+
+            dotsContainer.appendChild(dot);
+
+        }
+
+    };
+
+
+    /* =====================================================
+       GET ACTUAL CARD WIDTH
+    ===================================================== */
+
+    const getCardWidth = () => {
+
+        if (!cards[0]) return 0;
+
+        return cards[0]
+            .getBoundingClientRect()
+            .width;
+
+    };
+
+
+    /* =====================================================
+       GET ACTUAL GAP
+    ===================================================== */
+
+    const getGap = () => {
+
+        const styles =
+            window.getComputedStyle(track);
+
+        return parseFloat(styles.gap) || 0;
+
+    };
+
+
+    /* =====================================================
+       UPDATE SLIDER
+    ===================================================== */
+
+    const updateSlider = (
+        animate = true
+    ) => {
+
+        const maxIndex =
+            getMaxIndex();
+
+
+        /* Keep index valid */
+
+        currentIndex =
+            Math.max(
+                0,
+                Math.min(
+                    currentIndex,
+                    maxIndex
+                )
+            );
+
+
+        /*
+         * Measure the REAL rendered
+         * card width.
+         */
+
+        const cardWidth =
+            getCardWidth();
+
+        const gap =
+            getGap();
+
+
+        /*
+         * Distance to move one card.
+         */
+
+        const step =
+            cardWidth + gap;
+
+
+        const moveDistance =
+            currentIndex * step;
+
+
+        /*
+         * Respect reduced motion.
+         */
+
+        if (
+            !animate ||
+            isReducedMotion()
+        ) {
+
+            track.style.transition =
+                'none';
+
+        } else {
+
+            track.style.transition =
+                'transform 700ms cubic-bezier(0.22, 1, 0.36, 1)';
+
+        }
+
+
+        track.style.transform =
+            `translate3d(-${moveDistance}px, 0, 0)`;
+
+
+        /* =================================================
+           UPDATE DOTS
+        ================================================= */
+
+        if (dotsContainer) {
+
+            const currentPage =
+                getCurrentPage();
+
+            const dots =
+                Array.from(
+                    dotsContainer.children
+                );
+
+
+            dots.forEach(
+                (dot, index) => {
+
+                    const active =
+                        index === currentPage;
+
+                    dot.classList.toggle(
+                        'active',
+                        active
+                    );
+
+                    dot.setAttribute(
+                        'aria-selected',
+                        active
+                            ? 'true'
+                            : 'false'
+                    );
+
+                }
+            );
+
+        }
+
+    };
+
+
+    /* =====================================================
+       NEXT
+    ===================================================== */
+
+    const nextSlide = () => {
+
+        const maxIndex =
+            getMaxIndex();
+
+
+        if (currentIndex >= maxIndex) {
+
+            currentIndex = 0;
+
+        } else {
+
+            currentIndex =
+                Math.min(
+                    currentIndex +
+                    cardsPerView,
+                    maxIndex
+                );
+
+        }
+
+
         updateSlider();
-        restartAutoSlide();
-      });
 
-      dotsContainer.appendChild(dot);
-    }
-  };
+    };
 
-  const getCurrentPage = () => {
-    return Math.floor(currentIndex / cardsPerView);
-  };
 
-  // Update slider track translation and active control state
-  const updateSlider = () => {
-    const maxIndex = getMaxIndex();
-    if (currentIndex > maxIndex) currentIndex = maxIndex;
-    if (currentIndex < 0) currentIndex = 0;
+    /* =====================================================
+       PREVIOUS
+    ===================================================== */
 
-    // Calculate translation width considering 20px gap
-    // Each item width = (containerWidth - (cardsPerView - 1) * 20) / cardsPerView
-    const containerWidth = container.clientWidth;
-    const gap = 20;
-    const cardWidth = (containerWidth - (cardsPerView - 1) * gap) / cardsPerView;
-    const moveDistance = (cardWidth + gap) * currentIndex;
+    const previousSlide = () => {
 
-    track.style.transform = `translateX(-${moveDistance}px)`;
+        const maxIndex =
+            getMaxIndex();
 
-    // Update pagination dots
-    if (dotsContainer) {
-      const currentPage = getCurrentPage();
-      const dots = Array.from(dotsContainer.children);
-      dots.forEach((dot, idx) => {
-        const isActive = idx === currentPage;
-        dot.classList.toggle('active', isActive);
-        dot.setAttribute('aria-selected', isActive ? 'true' : 'false');
-      });
-    }
-  };
 
-  // Navigation handlers
-  const nextSlide = () => {
-    const maxIndex = getMaxIndex();
-    if (currentIndex >= maxIndex) {
-      currentIndex = 0; // Loop continuously
-    } else {
-      // Step by cardsPerView for group navigation, capped at maxIndex
-      currentIndex = Math.min(currentIndex + cardsPerView, maxIndex);
-    }
-    updateSlider();
-  };
+        if (currentIndex <= 0) {
 
-  const previousSlide = () => {
-    if (currentIndex <= 0) {
-      currentIndex = getMaxIndex(); // Loop to last view
-    } else {
-      currentIndex = Math.max(0, currentIndex - cardsPerView);
-    }
-    updateSlider();
-  };
+            currentIndex = maxIndex;
 
-  // Autoplay control functions
-  const startAutoSlide = () => {
-    if (isReducedMotion() || autoSlideTimer) return;
-    autoSlideTimer = setInterval(() => {
-      nextSlide();
-    }, AUTOPLAY_INTERVAL);
-  };
+        } else {
 
-  const stopAutoSlide = () => {
-    if (autoSlideTimer) {
-      clearInterval(autoSlideTimer);
-      autoSlideTimer = null;
-    }
-  };
+            currentIndex =
+                Math.max(
+                    0,
+                    currentIndex -
+                    cardsPerView
+                );
 
-  const restartAutoSlide = () => {
-    stopAutoSlide();
-    startAutoSlide();
-  };
+        }
 
-  // Event Listeners for Prev/Next Controls
-  if (prevBtn) {
-    prevBtn.addEventListener('click', () => {
-      previousSlide();
-      restartAutoSlide();
-    });
-  }
 
-  if (nextBtn) {
-    nextBtn.addEventListener('click', () => {
-      nextSlide();
-      restartAutoSlide();
-    });
-  }
+        updateSlider();
 
-  // Hover & Focus Pause handling
-  container.parentElement?.addEventListener('mouseenter', stopAutoSlide);
-  container.parentElement?.addEventListener('mouseleave', startAutoSlide);
-  container.parentElement?.addEventListener('focusin', stopAutoSlide);
-  container.parentElement?.addEventListener('focusout', startAutoSlide);
+    };
 
-  // Resize handler
-  let resizeTimeout;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(() => {
-      const newCardsPerView = getCardsPerView();
-      if (newCardsPerView !== cardsPerView) {
-        cardsPerView = newCardsPerView;
-        createDots();
-      }
-      updateSlider();
-    }, 100);
-  });
 
-  // Touch Swipe Support for Mobile & Tablet
-  let startX = 0;
-  let currentX = 0;
-  let isSwiping = false;
+    /* =====================================================
+       AUTOPLAY
+    ===================================================== */
 
-  track.addEventListener('touchstart', (e) => {
-    startX = e.touches[0].clientX;
-    isSwiping = true;
-    stopAutoSlide();
-  }, { passive: true });
+    const startAutoSlide = () => {
 
-  track.addEventListener('touchmove', (e) => {
-    if (!isSwiping) return;
-    currentX = e.touches[0].clientX;
-  }, { passive: true });
+        if (
+            isReducedMotion() ||
+            autoSlideTimer
+        ) {
+            return;
+        }
 
-  track.addEventListener('touchend', () => {
-    if (!isSwiping) return;
-    isSwiping = false;
-    const diffX = startX - currentX;
-    if (Math.abs(diffX) > 40) {
-      if (diffX > 0) {
-        nextSlide();
-      } else {
-        previousSlide();
-      }
-    }
-    startAutoSlide();
-  });
 
-  // Initial Initialization
-  cardsPerView = getCardsPerView();
-  createDots();
-  updateSlider();
-  startAutoSlide();
+        autoSlideTimer =
+            setInterval(
+                nextSlide,
+                AUTOPLAY_INTERVAL
+            );
+
+    };
+
+
+    const stopAutoSlide = () => {
+
+        if (!autoSlideTimer) return;
+
+        clearInterval(
+            autoSlideTimer
+        );
+
+        autoSlideTimer = null;
+
+    };
+
+
+    const restartAutoSlide = () => {
+
+        stopAutoSlide();
+
+        startAutoSlide();
+
+    };
+
+
+    /* =====================================================
+       BUTTONS
+    ===================================================== */
+
+    prevBtn?.addEventListener(
+        'click',
+        () => {
+
+            previousSlide();
+
+            restartAutoSlide();
+
+        }
+    );
+
+
+    nextBtn?.addEventListener(
+        'click',
+        () => {
+
+            nextSlide();
+
+            restartAutoSlide();
+
+        }
+    );
+
+
+    /* =====================================================
+       HOVER PAUSE
+    ===================================================== */
+
+    container.addEventListener(
+        'mouseenter',
+        stopAutoSlide
+    );
+
+
+    container.addEventListener(
+        'mouseleave',
+        startAutoSlide
+    );
+
+
+    /* =====================================================
+       FOCUS PAUSE
+    ===================================================== */
+
+    container.addEventListener(
+        'focusin',
+        stopAutoSlide
+    );
+
+
+    container.addEventListener(
+        'focusout',
+        startAutoSlide
+    );
+
+
+    /* =====================================================
+       RESIZE
+    ===================================================== */
+
+    window.addEventListener(
+        'resize',
+        () => {
+
+            clearTimeout(
+                resizeTimer
+            );
+
+
+            resizeTimer =
+                setTimeout(
+                    () => {
+
+                        const newCardsPerView =
+                            getCardsPerView();
+
+
+                        /*
+                         * Rebuild carousel when
+                         * breakpoint changes.
+                         */
+
+                        if (
+                            newCardsPerView !==
+                            cardsPerView
+                        ) {
+
+                            cardsPerView =
+                                newCardsPerView;
+
+                            currentIndex = 0;
+
+                            createDots();
+
+                        }
+
+
+                        /*
+                         * Recalculate actual
+                         * card dimensions.
+                         */
+
+                        updateSlider(false);
+
+                    },
+                    150
+                );
+
+        }
+    );
+
+
+    /* =====================================================
+       TOUCH SWIPE
+    ===================================================== */
+
+    let touchStartX = 0;
+
+    let touchCurrentX = 0;
+
+    let isTouching = false;
+
+
+    track.addEventListener(
+        'touchstart',
+        (event) => {
+
+            touchStartX =
+                event.touches[0]
+                    .clientX;
+
+            touchCurrentX =
+                touchStartX;
+
+            isTouching = true;
+
+            stopAutoSlide();
+
+        },
+        {
+            passive: true
+        }
+    );
+
+
+    track.addEventListener(
+        'touchmove',
+        (event) => {
+
+            if (!isTouching) return;
+
+            touchCurrentX =
+                event.touches[0]
+                    .clientX;
+
+        },
+        {
+            passive: true
+        }
+    );
+
+
+    track.addEventListener(
+        'touchend',
+        () => {
+
+            if (!isTouching) return;
+
+            isTouching = false;
+
+
+            const difference =
+                touchStartX -
+                touchCurrentX;
+
+
+            const SWIPE_THRESHOLD = 40;
+
+
+            if (
+                Math.abs(difference) >=
+                SWIPE_THRESHOLD
+            ) {
+
+                if (difference > 0) {
+
+                    nextSlide();
+
+                } else {
+
+                    previousSlide();
+
+                }
+
+            }
+
+
+            restartAutoSlide();
+
+        }
+    );
+
+
+    /* =====================================================
+       INITIALIZE
+    ===================================================== */
+
+    cardsPerView =
+        getCardsPerView();
+
+    createDots();
+
+
+    /*
+     * Wait until layout is fully calculated.
+     */
+
+    requestAnimationFrame(
+        () => {
+
+            updateSlider(false);
+
+            startAutoSlide();
+
+        }
+    );
+
 };

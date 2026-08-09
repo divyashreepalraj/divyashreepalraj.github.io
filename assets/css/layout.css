@@ -343,6 +343,8 @@ padding: 0.55rem 1.25rem 0.35rem;
     animation-delay: 2s;
 }
 
+
+
 @keyframes float {
     0%,
     100% {
@@ -811,5 +813,9 @@ padding: 0.55rem 1.25rem 0.35rem;
         gap: 15%;
         margin-bottom: 25px;
         justify-content: center;
+    }
+    
+    .repo-grid {
+        grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
     }
 }

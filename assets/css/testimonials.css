@@ -310,3 +310,129 @@
     transform: none !important;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   DYNAMIC TESTIMONIAL RATING
+===================================================== */
+
+.testimonial-rating {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin-bottom: 1.25rem;
+}
+
+/* Individual star */
+
+.rating-star {
+  display: inline-block;
+
+  font-size: 1.1rem;
+  line-height: 1;
+
+  position: relative;
+
+  /* Empty star by default */
+  color: var(--text-muted);
+
+  opacity: 0.25;
+
+  transition:
+    color 0.25s ease,
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+
+/* =====================================================
+   FULL STAR
+===================================================== */
+
+.rating-star.full {
+  color: #fbbf24;
+  opacity: 1;
+
+  text-shadow:
+    0 0 8px var(--accent-glow);
+}
+
+
+/* =====================================================
+   HALF STAR
+===================================================== */
+
+.rating-star.half {
+  background: linear-gradient(
+    90deg,
+    #fbbf24 50%,
+    var(--text-muted) 50%
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+
+  opacity: 1;
+
+  text-shadow: none;
+}
+
+
+/* =====================================================
+   EMPTY STAR
+===================================================== */
+
+.rating-star.empty {
+  color: var(--text-muted);
+  opacity: 0.25;
+}
+
+
+/* =====================================================
+   HOVER EFFECT
+===================================================== */
+
+.testimonial-card:hover .rating-star.full,
+.testimonial-card:hover .rating-star.half {
+  transform: translateY(-1px);
+}
+
+
+/* =====================================================
+   ACCESSIBILITY
+===================================================== */
+
+.testimonial-rating:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 4px;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+  .testimonial-rating {
+    gap: 2px;
+  }
+
+  .rating-star {
+    font-size: 1rem;
+  }
+
+}

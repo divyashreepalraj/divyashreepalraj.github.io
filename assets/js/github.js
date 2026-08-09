@@ -109,7 +109,7 @@ async function loadGithub() {
         repos.forEach((repo) => {
             const card = document.createElement("div");
 
-            card.className = "repo-card";
+            card.className = "repo-card shimmer";
 
             card.innerHTML = `
             <div class="repo_details">
