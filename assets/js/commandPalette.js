@@ -14,6 +14,7 @@ const searchItems = [
   { title: "Featured Projects Showcase", category: "Navigation", url: "#projects", icon: "🚀" },
   { title: "Design Process Engine", category: "Navigation", url: "#process", icon: "📐" },
   { title: "GitHub Activity & Heatmap", category: "Navigation", url: "#github", icon: "🐙" },
+  { title: "Client Feedback & Testimonials", category: "Navigation", url: "#testimonials", icon: "💬" },
   { title: "Blog & Articles", category: "Navigation", url: "#blog", icon: "✍️" },
   { title: "Contact Divya Shree P", category: "Navigation", url: "#contact", icon: "📫" },
 

@@ -9,6 +9,7 @@ import { initAnimations } from './animation.js';
 import { initCommandPalette } from './commandPalette.js';
 import { initProjects } from './projects.js';
 import { initBlog } from './blog.js';
+import { initTestimonials } from './testimonials.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   console.log('🚀 Initializing Divya Shree P Portfolio Engineering Application...');
@@ -19,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCommandPalette();
   initProjects();
   initBlog();
+  initTestimonials();
 
   // Contact form email submission to divyashree.palraj@gmail.com
   const contactForm = document.getElementById('contact-form');
