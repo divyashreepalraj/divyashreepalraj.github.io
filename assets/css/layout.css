@@ -818,4 +818,8 @@ padding: 0.55rem 1.25rem 0.35rem;
     .repo-grid {
         grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
     }
+
+    .hero-subtitle {
+        display: none;
+    }
 }
