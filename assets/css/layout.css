@@ -790,18 +790,22 @@ padding: 0.55rem 1.25rem 0.35rem;
    -------------------------------------------------------------------------- */
 .footer {
     border-top: 1px solid var(--border-color);
-    padding: var(--space-12) 0 var(--space-8);
+    padding: 15px 8px;
     background: var(--bg-color-secondary);
 }
 
 .footer-content {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
     gap: var(--space-4);
     font-size: var(--font-size-sm);
     color: var(--text-muted);
+}
+
+.copyrights {
+    font-size: 13px;
 }
 
 @media screen and (max-width: 767px) {
@@ -819,7 +823,30 @@ padding: 0.55rem 1.25rem 0.35rem;
         grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
     }
 
+}
+
+@media screen and (max-width: 640px) {
     .hero-subtitle {
+        display: none;
+    }
+
+    .portrait-wrapper {
+        width: 100%;
+    }
+
+    .floating-card-1 {
+        left: 0;
+        bottom: 43px;
+        top: auto;
+    }
+    .hero-grid {
+        gap: 0;
+    }
+
+}
+
+@media screen and (max-width: 420px) {
+    .hireme_btn {
         display: none;
     }
 }
