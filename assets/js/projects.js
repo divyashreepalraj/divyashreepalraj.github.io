@@ -320,7 +320,7 @@ export const renderProjectDetail = () => {
           TECHNOLOGIES & TOOLS
         </div>
 
-        <div class="flex flex-wrap gap-2">
+        <div class="flex flex-wrap gap-2 pro_skill_tags">
           ${project.technologies.map(t => `<span class="badge" style="padding: 0.35rem 0.75rem;">${t.toUpperCase()}</span>`).join('')}
         </div>
 

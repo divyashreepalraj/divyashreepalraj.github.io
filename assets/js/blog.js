@@ -194,19 +194,16 @@ export const renderHomepageBlog = () => {
 
 export const renderBlogListing = () => {
   const container = $('.blog-listing-container');
-  const searchInput = $('#blog-search-input');
-  const filterBtns = $$('[data-blog-filter]');
-
   if (!container) return;
 
   // Set Page SEO
   updateSEO({
     title: 'Blog & Technical Writing | Divya Shree P',
-    description: 'Technical articles on design systems, modular CSS architecture, web performance, and UI engineering by Divya Shree P.',
+    description: 'Articles on modular CSS architecture, performance engineering, WCAG accessibility, and evolving from UI design to full engineering.',
     canonicalUrl: `${window.location.origin}/blog.html`
   });
 
-  const renderFilter = (catKey = 'all', searchQuery = '') => {
+  const renderContent = (catKey = 'all', searchQuery = '') => {
     let filtered = blogArticles;
 
     if (catKey !== 'all') {
@@ -221,74 +218,164 @@ export const renderBlogListing = () => {
       );
     }
 
-    if (filtered.length === 0) {
-      container.innerHTML = `
-        <div style="text-align: center; color: var(--text-muted); padding: 3rem;">
-          No articles found matching your criteria.
-        </div>
-      `;
-      return;
-    }
+    const featuredArticle = filtered.length > 0 ? filtered[0] : null;
+    const gridArticles = filtered.length > 1 ? filtered.slice(1) : (filtered.length === 1 && searchQuery ? filtered : []);
 
     container.innerHTML = `
-      <div class="grid grid-cols-3 gap-6">
-        ${filtered.map(article => createBlogCardHTML(article)).join('')}
+      <!-- TOP HEADER -->
+      <div style="margin-bottom: 2rem;">
+        <span class="badge badge-accent" style="margin-bottom: 0.75rem;">TECHNICAL WRITING</span>
+        <h1 style="font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 800; color: var(--text-primary); margin-bottom: 0.75rem; font-family: var(--font-family-heading);">
+          Articles & Insights
+        </h1>
+        <p style="color: var(--text-secondary); font-size: var(--font-size-lg); max-width: 750px; margin-bottom: 2rem; line-height: 1.6;">
+          Articles on modular CSS architecture, performance engineering, WCAG accessibility, and evolving from UI design to full engineering.
+        </p>
+
+        <!-- TABS & INLINE SEARCH ROW -->
+        <div class="blog-header-row">
+          <div class="blog-filter-tabs">
+            <button class="skill-tab-btn ${catKey === 'all' ? 'active' : ''}" data-blog-filter="all">All Topics</button>
+            <button class="skill-tab-btn ${catKey === 'engineering' ? 'active' : ''}" data-blog-filter="engineering">Engineering</button>
+            <button class="skill-tab-btn ${catKey === 'career' ? 'active' : ''}" data-blog-filter="career">Career & Growth</button>
+            <button class="skill-tab-btn ${catKey === 'performance' ? 'active' : ''}" data-blog-filter="performance">Performance</button>
+            <button class="skill-tab-btn ${catKey === 'accessibility' ? 'active' : ''}" data-blog-filter="accessibility">Accessibility</button>
+          </div>
+
+          <div class="blog-search-box">
+            <svg class="blog-search-icon" width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <input type="text" id="blog-search-input" value="${searchQuery}" placeholder="Search by title, tag (#BEM, #CSS3)" aria-label="Search articles">
+          </div>
+        </div>
       </div>
+
+      ${filtered.length === 0 ? `
+        <div style="text-align: center; color: var(--text-muted); padding: 4rem 1rem;">
+          <h3>No articles found</h3>
+          <p style="margin-top: 0.5rem;">No technical articles matched your search criteria.</p>
+        </div>
+      ` : `
+        <!-- FEATURED TOP CARD -->
+        ${featuredArticle && !searchQuery ? `
+          <article class="blog-featured-card">
+            <div class="blog-featured-meta">
+              <span class="badge badge-accent">${featuredArticle.category}</span>
+              <span class="font-mono text-muted" style="font-size: var(--font-size-xs);">${featuredArticle.date}</span>
+            </div>
+
+            <h2 class="blog-featured-title">
+              <a href="blog-post.html?post=${featuredArticle.slug}">
+                ${featuredArticle.title}
+              </a>
+            </h2>
+
+            <p class="blog-featured-desc">
+              ${featuredArticle.excerpt || featuredArticle.summary}
+            </p>
+
+            <div class="flex flex-wrap gap-2" style="margin-bottom: 1.75rem;">
+              ${featuredArticle.tags.map(t => `<span class="badge">#${t}</span>`).join('')}
+            </div>
+
+            <div class="blog-featured-footer">
+              <span class="font-mono text-muted" style="font-size: var(--font-size-xs);">${featuredArticle.readingTime}</span>
+              <a href="blog-post.html?post=${featuredArticle.slug}" class="hover-underline font-mono" style="color: var(--text-primary); text-decoration: none; font-size: var(--font-size-xs); font-weight: 600; display: inline-flex; align-items: center; gap: 0.35rem;">
+                Read Article ›
+              </a>
+            </div>
+          </article>
+        ` : ''}
+
+        <!-- 3-COLUMN CARDS GRID -->
+        <div class="blog-cards-grid">
+          ${(searchQuery ? filtered : gridArticles).map(article => `
+            <article class="blog-card-item">
+              <div>
+                <div class="flex items-center justify-between" style="margin-bottom: 0.85rem;">
+                  <span class="badge badge-accent">${article.category}</span>
+                  <span class="font-mono text-muted" style="font-size: var(--font-size-xs);">${article.date}</span>
+                </div>
+
+                <h3 class="blog-card-title">
+                  <a href="blog-post.html?post=${article.slug}">
+                    ${article.title}
+                  </a>
+                </h3>
+
+                <p class="blog-card-excerpt">
+                  ${article.excerpt || article.summary}
+                </p>
+
+                <div class="flex flex-wrap gap-2" style="margin-bottom: 1.5rem;">
+                  ${article.tags.map(t => `<span class="badge">#${t}</span>`).join('')}
+                </div>
+              </div>
+
+              <div class="blog-card-footer">
+                <span>${article.readingTime}</span>
+                <a href="blog-post.html?post=${article.slug}" class="hover-underline" style="color: var(--text-primary); text-decoration: none; font-weight: 600;">
+                  Read Article →
+                </a>
+              </div>
+            </article>
+          `).join('')}
+        </div>
+      `}
     `;
+
+    // Re-attach Search Event Listener
+    const searchInput = $('#blog-search-input');
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        renderContent(catKey, e.target.value.toLowerCase().trim());
+        // Focus back search input and keep cursor
+        const newSearchInput = $('#blog-search-input');
+        if (newSearchInput) {
+          newSearchInput.focus();
+          newSearchInput.setSelectionRange(e.target.value.length, e.target.value.length);
+        }
+      });
+    }
+
+    // Re-attach Category Filter Buttons Event Listener
+    const filterBtns = $$('[data-blog-filter]');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const cat = btn.getAttribute('data-blog-filter');
+        const currentVal = $('#blog-search-input') ? $('#blog-search-input').value.toLowerCase().trim() : '';
+        renderContent(cat, currentVal);
+      });
+    });
   };
 
   // Initial Render
-  renderFilter('all', '');
-
-  // Event Listeners
-  if (searchInput) {
-    searchInput.addEventListener('input', () => {
-      const activeBtn = Array.from(filterBtns).find(b => b.classList.contains('active'));
-      const activeCat = activeBtn ? activeBtn.getAttribute('data-blog-filter') : 'all';
-      renderFilter(activeCat, searchInput.value.toLowerCase().trim());
-    });
-  }
-
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const cat = btn.getAttribute('data-blog-filter');
-      const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
-      renderFilter(cat, query);
-    });
-  });
+  renderContent('all', '');
 };
 
-// ==========================================================================
-// CARD HTML HELPER
-// ==========================================================================
-
+// Helper for Homepage
 const createBlogCardHTML = (article) => {
   return `
-    <article class="glass-card shimmer reveal-up" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+    <article class="blog-card-item">
       <div>
-        <div class="flex items-center justify-between" style="margin-bottom: 0.75rem;">
+        <div class="flex items-center justify-between" style="margin-bottom: 0.85rem;">
           <span class="badge badge-accent">${article.category}</span>
           <span class="font-mono text-muted" style="font-size: var(--font-size-xs);">${article.date}</span>
         </div>
 
-        <h3 style="font-size: var(--font-size-lg); margin-bottom: 0.75rem; color: var(--text-primary);">
-          <a href="blog-post.html?post=${article.slug}" style="color: inherit; text-decoration: none;" class="hover-underline">
+        <h3 class="blog-card-title">
+          <a href="blog-post.html?post=${article.slug}">
             ${article.title}
           </a>
         </h3>
 
-        <p style="color: var(--text-secondary); margin-bottom: 1.25rem; font-size: var(--font-size-sm); line-height: 1.6;">
+        <p class="blog-card-excerpt">
           ${article.excerpt || article.summary}
         </p>
 
         <div class="flex flex-wrap gap-2" style="margin-bottom: 1.5rem;">
           ${article.tags.map(t => `<span class="badge">#${t}</span>`).join('')}
         </div>
-      </div>
-
-      <div style="padding-top: 1rem; border-top: 1px solid var(--border-color); display: flex; items-center; justify-content: space-between;">
+      <div style="padding-top: 1rem; border-top: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between;">
         <span class="font-mono text-muted" style="font-size: var(--font-size-xs);">${article.readingTime}</span>
         <a href="blog-post.html?post=${article.slug}" class="btn btn-secondary btn-sm" style="font-size: 0.85rem;">
           Read Article →
@@ -352,7 +439,7 @@ export const renderBlogPostDetail = () => {
     </nav>
 
     <!-- ARTICLE HEADER -->
-    <article class="glass-card reveal-up" style="padding: 3rem 2.5rem; max-width: 850px; margin: 0 auto 4rem; border-radius: var(--radius-lg);">
+    <article class="glass-card " style="padding: 3rem 2.5rem; max-width: 850px; margin: 0 auto 4rem; border-radius: var(--radius-lg);">
       <header style="margin-bottom: 2.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 2rem;">
         <div class="flex items-center gap-3" style="margin-bottom: 1.25rem;">
           <span class="badge badge-accent">${article.category}</span>
@@ -384,7 +471,7 @@ export const renderBlogPostDetail = () => {
 
     <!-- RELATED ARTICLES -->
     ${relatedArticles.length ? `
-      <section style="max-width: 850px; margin: 0 auto;" class="reveal-up">
+      <section style="max-width: 850px; margin: 0 auto;" class="">
         <h2 style="font-size: var(--font-size-xl); margin-bottom: 1.5rem; color: var(--text-primary);">Related Articles</h2>
         <div class="grid grid-cols-2 gap-6">
           ${relatedArticles.map(rel => createBlogCardHTML(rel)).join('')}
@@ -393,3 +480,5 @@ export const renderBlogPostDetail = () => {
     ` : ''}
   `;
 };
+
+

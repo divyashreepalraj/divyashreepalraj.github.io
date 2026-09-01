@@ -503,6 +503,12 @@ padding: 0.55rem 1.25rem 0.35rem;
     color: var(--text-secondary);
 }
 
+.pro_skill_tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
 /* --------------------------------------------------------------------------
    Skills Grid & Interactive Cards
    -------------------------------------------------------------------------- */
