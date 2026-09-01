@@ -13,6 +13,28 @@ export const initNavigation = () => {
   const navMenu = $('.nav-menu');
   const navLinks = $$('.nav-link');
 
+  // Active Link Highlighting based on current URL path
+  const currentPath = window.location.pathname.toLowerCase();
+  navLinks.forEach(link => {
+    const href = link.getAttribute('href').toLowerCase();
+    if (
+      (currentPath.endsWith('projects.html') || currentPath.endsWith('project.html')) &&
+      (href.includes('project') || href.includes('projects'))
+    ) {
+      link.classList.add('active');
+    } else if (
+      (currentPath.endsWith('blog.html') || currentPath.endsWith('blog-post.html')) &&
+      (href.includes('blog'))
+    ) {
+      link.classList.add('active');
+    } else if (
+      (currentPath.endsWith('index.html') || currentPath === '/' || currentPath === '') &&
+      href.startsWith('#')
+    ) {
+      // Handled by ScrollSpy below
+    }
+  });
+
   // Handle Header background shrink & Scroll progress bar
   const handleScroll = () => {
     const scrollTop = window.scrollY;
@@ -24,7 +46,8 @@ export const initNavigation = () => {
     }
 
     if (header) {
-      if (scrollTop > 50) {
+      const isHome = currentPath.endsWith('index.html') || currentPath.endsWith('/') || currentPath === '';
+      if (scrollTop > 50 || !isHome) {
         header.classList.add('scrolled');
       } else {
         header.classList.remove('scrolled');
@@ -57,7 +80,7 @@ export const initNavigation = () => {
       mobileToggle.setAttribute('aria-expanded', !isOpen);
     });
 
-    // Close mobile menu when clicking outside or link
+    // Close mobile menu when clicking link
     navLinks.forEach(link => {
       link.addEventListener('click', () => {
         navMenu.classList.remove('open');
@@ -66,9 +89,9 @@ export const initNavigation = () => {
     });
   }
 
-  // Active Section Scroll Spy via IntersectionObserver
+  // Active Section Scroll Spy via IntersectionObserver for single-page links
   const sections = $$('section[id]');
-  if (sections.length > 0) {
+  if (sections.length > 0 && (currentPath.endsWith('index.html') || currentPath.endsWith('/') || currentPath === '')) {
     const observerOptions = {
       root: null,
       rootMargin: '-20% 0px -60% 0px',
@@ -82,7 +105,7 @@ export const initNavigation = () => {
           navLinks.forEach(link => {
             if (link.getAttribute('href') === `#${currentId}`) {
               link.classList.add('active');
-            } else {
+            } else if (link.getAttribute('href').startsWith('#')) {
               link.classList.remove('active');
             }
           });

@@ -21,20 +21,8 @@
   </script>
 </head>
 <body>
-  <header class="header scrolled">
-    <div class="container nav-container">
-      <a href="../index.html" class="logo">
-        <span class="text-gradient">Divya Shree P</span>
-        <span class="logo-dot"></span>
-      </a>
-      <div class="nav-actions">
-        <button class="btn btn-primary btn-sm no-print" onclick="window.print()">
-          Print / Save PDF
-        </button>
-        <a href="../index.html" class="btn btn-secondary btn-sm no-print">Back to Portfolio</a>
-      </div>
-    </div>
-  </header>
+  <!-- Dynamic Shared Header -->
+  <div id="site-header"></div>
 
   <main style="padding-top: 140px; padding-bottom: 60px;" class="container container-reading">
     <div class="glass-card resume-container">
@@ -103,5 +91,9 @@
       </section>
     </div>
   </main>
+  <!-- Dynamic Shared Footer -->
+  <div id="site-footer"></div>
+
+  <script type="module" src="../assets/js/app.js"></script>
 </body>
 </html>

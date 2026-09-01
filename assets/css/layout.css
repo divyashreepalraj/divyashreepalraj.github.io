@@ -4,8 +4,18 @@
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   Navigation Header
+   Navigation Header & Shared Containers
    -------------------------------------------------------------------------- */
+#site-header {
+    display: block;
+    min-height: 70px;
+}
+
+#site-footer {
+    display: block;
+    min-height: 250px;
+}
+
 .header {
     position: fixed;
     top: 0;
@@ -163,10 +173,10 @@ padding: 0.55rem 1.25rem 0.35rem;
    Hero Section
    -------------------------------------------------------------------------- */
 .hero {
-    min-height: 100vh;
+    /* min-height: 100vh; */
     display: flex;
     align-items: center;
-    padding-top: 120px;
+    padding: 60px 0;
     position: relative;
     overflow: hidden;
 }
@@ -793,26 +803,126 @@ padding: 0.55rem 1.25rem 0.35rem;
 }
 
 /* --------------------------------------------------------------------------
-   Footer
+   Redesigned Premium Footer
    -------------------------------------------------------------------------- */
 .footer {
     border-top: 1px solid var(--border-color);
-    padding: 15px 8px;
+    padding: 4rem 0 2rem;
     background: var(--bg-color-secondary);
+    position: relative;
 }
 
-.footer-content {
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 3rem;
+    margin-bottom: 3.5rem;
+}
+
+.footer-brand .footer-logo {
+    font-family: var(--font-family-display);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-primary);
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+.footer-brand p {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    max-width: 380px;
+}
+
+.footer-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0.85rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-xs);
+    font-family: var(--font-family-mono);
+    color: var(--text-primary);
+}
+
+.footer-col-title {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+    margin-bottom: 1.25rem;
+    letter-spacing: 0.02em;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.footer-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: var(--font-size-sm);
+    transition: color var(--transition-fast), transform var(--transition-fast);
+    display: inline-block;
+}
+
+.footer-links a:hover {
+    color: var(--accent-primary);
+    transform: translateX(4px);
+}
+
+.footer-cta-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+}
+
+.footer-cta-card p {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.footer-bottom {
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     flex-wrap: wrap;
-    gap: var(--space-4);
-    font-size: var(--font-size-sm);
+    gap: 1rem;
+    font-size: var(--font-size-xs);
     color: var(--text-muted);
 }
 
-.copyrights {
-    font-size: 13px;
+@media screen and (max-width: 992px) {
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
 }
 
 @media screen and (max-width: 767px) {
@@ -829,7 +939,6 @@ padding: 0.55rem 1.25rem 0.35rem;
     .repo-grid {
         grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
     }
-
 }
 
 @media screen and (max-width: 640px) {

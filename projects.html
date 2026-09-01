@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects | Divya Shree P - UI Engineer & Frontend Developer</title>
+  <meta name="description" content="Explore production development projects, web applications, and frontend systems engineered by Divya Shree P.">
+  <link rel="canonical" href="https://divyashree.dev/projects.html">
+  <link rel="stylesheet" href="assets/css/style.css">
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Projects | Divya Shree P">
+  <meta property="og:description" content="Development projects showcase by Divya Shree P. Production engineering, iGaming platforms, and custom web applications.">
+  <meta property="og:url" content="https://divyashree.dev/projects.html">
+
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('divya_portfolio_theme');
+      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', savedTheme || (systemDark ? 'dark' : 'dark'));
+    })();
+  </script>
+</head>
+<body>
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress-container">
+    <div class="scroll-progress-bar"></div>
+  </div>
+
+  <!-- Dynamic Shared Header -->
+  <div id="site-header"></div>
+
+  <main id="main-content" style="padding-top: 60px; min-height: 80vh;" class="container">
+    <div class="section-header reveal-up">
+
+
+
+      
+      <span class="section-tag">Development Portfolio</span>
+      <h1 class="section-title">Projects</h1>
+      <p class="section-description text-secondary">
+        Production development deliverables, iGaming frontend platforms, responsive web applications, and UI token systems.
+      </p>
+    </div>
+
+    <div class="projects-listing-container reveal-up" style="margin-bottom: 4rem;">
+      <!-- Dynamically Rendered by projects.js -->
+    </div>
+  </main>
+
+  <!-- Dynamic Shared Footer -->
+  <div id="site-footer"></div>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top btn-icon" aria-label="Back to top">
+    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+  </button>
+
+  <script type="module" src="assets/js/app.js"></script>
+</body>
+</html>
