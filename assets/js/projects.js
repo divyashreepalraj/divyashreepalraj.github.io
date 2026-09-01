@@ -193,7 +193,7 @@ export const renderProjectsListing = () => {
 
 const createProjectCardHTML = (project) => {
   return `
-    <article class="project-card glass-card shimmer reveal-up" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+    <article class="project-card glass-card shimmer" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
       <div>
         <!-- PROJECT BADGES -->
         <div class="flex items-center justify-between gap-2" style="margin-bottom: 0.75rem;">
@@ -279,168 +279,197 @@ export const renderProjectDetail = () => {
   const prevProject = projectsData[(currentIndex - 1 + projectsData.length) % projectsData.length];
   const nextProject = projectsData[(currentIndex + 1) % projectsData.length];
 
+  // Get 3 "More Projects" (excluding current project)
+  const otherProjects = projectsData.filter(p => p.id !== project.id).slice(0, 3);
+  if (otherProjects.length < 3) {
+    const remaining = projectsData.filter(p => p.id !== project.id && !otherProjects.includes(p));
+    otherProjects.push(...remaining.slice(0, 3 - otherProjects.length));
+  }
+
+  // Highlight numbers & metrics in outcome (e.g. 40%, 35%, 98+, 50%, etc.)
+  const formattedOutcome = (project.outcome || '').replace(/(\d+%\+?|\d+\+)/g, '<span class="highlight-accent">$1</span>');
+
   container.innerHTML = `
-    <!-- BREADCRUMB & BACK LINK -->
-    <nav aria-label="Breadcrumb" style="margin-bottom: 2rem;">
-      <a href="projects.html" class="hover-underline" style="color: var(--accent-primary); text-decoration: none; font-size: var(--font-size-sm); display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 500;">
-        ← Back to Projects
-      </a>
-    </nav>
+    <div class="project-detail-wrapper">
+      <!-- BREADCRUMB & BACK LINK -->
+      <nav aria-label="Breadcrumb">
+        <a href="projects.html" class="project-back-link">
+          ← Back to Projects
+        </a>
+      </nav>
 
-    <!-- HERO SECTION -->
-    <header class="project-hero glass-card reveal-up" style="padding: 2.5rem; margin-bottom: 3rem; border-radius: var(--radius-lg); position: relative; overflow: hidden;">
-      <div class="flex items-center gap-3" style="margin-bottom: 1rem; flex-wrap: wrap;">
-        <span class="badge badge-accent">${project.type}</span>
-        <span class="badge">${project.category}</span>
-        <span class="font-mono text-muted" style="font-size: var(--font-size-xs); margin-left: auto;">${project.date}</span>
-      </div>
-
-      <h1 style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; margin-bottom: 1rem; line-height: 1.2; color: var(--text-primary);">
-        ${project.title}
-      </h1>
-
-      <p style="font-size: var(--font-size-lg); color: var(--text-secondary); max-width: 800px; margin-bottom: 2rem; line-height: 1.6;">
-        ${project.shortDescription || project.description}
-      </p>
-
-      <!-- TECH BADGES -->
-      <div style="margin-bottom: 2rem;">
-        <h2 style="font-size: var(--font-size-sm); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 0.75rem;">
-          Technologies & Tools
-        </h2>
-        <div class="flex flex-wrap gap-2">
-          ${project.technologies.map(t => `<span class="badge" style="padding: 0.4rem 0.85rem; font-size: 0.85rem;">${t}</span>`).join('')}
+      <!-- TOP HERO CARD -->
+      <header class="project-hero-card">
+        <div class="project-hero-meta">
+          <div class="flex items-center gap-2" style="flex-wrap: wrap;">
+            <span class="badge badge-accent">${project.type || 'Professional Project'}</span>
+            <span class="badge">${project.category || 'Development'}</span>
+          </div>
+          <span class="font-mono text-muted" style="font-size: var(--font-size-xs);">${project.date || ''}</span>
         </div>
+
+        <h1 class="project-hero-title">
+          ${project.title}
+        </h1>
+
+        <p class="project-hero-desc">
+          ${project.shortDescription || project.description}
+        </p>
+
+        <div class="project-tech-section-title">
+          TECHNOLOGIES & TOOLS
+        </div>
+
+        <div class="flex flex-wrap gap-2">
+          ${project.technologies.map(t => `<span class="badge" style="padding: 0.35rem 0.75rem;">${t.toUpperCase()}</span>`).join('')}
+        </div>
+
+        ${(project.liveUrl || project.githubUrl) ? `
+          <div class="project-hero-divider"></div>
+          <div class="flex flex-wrap gap-4" style="align-items: center;">
+            ${project.liveUrl ? `
+              <a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary magnetic" style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                View Live Project
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              </a>
+            ` : ''}
+
+            ${project.githubUrl ? `
+              <a href="${project.githubUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary magnetic" style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                View Source Code
+                <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-1.004-.013-1.845-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+              </a>
+            ` : ''}
+          </div>
+        ` : ''}
+      </header>
+
+      <!-- 2x2 GRID SECTION -->
+      <div class="project-grid-2x2">
+        <section class="project-section-card">
+          <div class="project-card-header">
+            <div class="project-card-icon-badge">
+              <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+            </div>
+            <h2 class="project-card-title">Overview</h2>
+          </div>
+          <p class="project-card-text">${project.overview || project.description}</p>
+        </section>
+
+        <section class="project-section-card">
+          <div class="project-card-header">
+            <div class="project-card-icon-badge">
+              <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+            </div>
+            <h2 class="project-card-title">My Role</h2>
+          </div>
+          <p class="project-card-text">${project.role || 'Frontend Engineer'}</p>
+        </section>
+
+        <section class="project-section-card">
+          <div class="project-card-header">
+            <div class="project-card-icon-badge">
+              <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            </div>
+            <h2 class="project-card-title">Objective</h2>
+          </div>
+          <p class="project-card-text">${project.objective || ''}</p>
+        </section>
+
+        <section class="project-section-card">
+          <div class="project-card-header">
+            <div class="project-card-icon-badge">
+              <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+            </div>
+            <h2 class="project-card-title">Development Process</h2>
+          </div>
+          <p class="project-card-text">${project.developmentProcess || ''}</p>
+        </section>
       </div>
 
-      <!-- ACTION BUTTONS -->
-      <div class="flex flex-wrap gap-4" style="align-items: center;">
-        ${project.liveUrl ? `
-          <a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary magnetic" style="display: inline-flex; align-items: center; gap: 0.5rem;">
-            View Live Project
-            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-          </a>
-        ` : ''}
-
-        ${project.githubUrl ? `
-          <a href="${project.githubUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary magnetic" style="display: inline-flex; align-items: center; gap: 0.5rem;">
-            View Source Code (GitHub)
-            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-1.004-.013-1.845-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-          </a>
-        ` : ''}
-      </div>
-    </header>
-
-    <!-- CONTENT SECTIONS GRID -->
-    <div style="display: grid; grid-template-columns: 1fr; gap: 2.5rem; max-width: 900px; margin: 0 auto 4rem;">
-
-      ${project.overview ? `
-        <section class="glass-card reveal-up" style="padding: 2rem;">
-          <h2 style="font-size: var(--font-size-xl); margin-bottom: 1rem; color: var(--accent-primary); display: flex; align-items: center; gap: 0.5rem;">
-            📌 Overview
+      <!-- KEY IMPLEMENTED FEATURES -->
+      ${(project.keyFeatures && project.keyFeatures.length) ? `
+        <section class="project-features-wrapper">
+          <h2 class="project-features-title">
+            <span style="color: #6366f1;">⚡</span> Key Implemented Features
           </h2>
-          <p style="color: var(--text-secondary); line-height: 1.8; font-size: 1.025rem;">
-            ${project.overview}
-          </p>
-        </section>
-      ` : ''}
-
-      ${project.objective ? `
-        <section class="glass-card reveal-up" style="padding: 2rem;">
-          <h2 style="font-size: var(--font-size-xl); margin-bottom: 1rem; color: var(--accent-primary); display: flex; align-items: center; gap: 0.5rem;">
-            🎯 Objective
-          </h2>
-          <p style="color: var(--text-secondary); line-height: 1.8; font-size: 1.025rem;">
-            ${project.objective}
-          </p>
-        </section>
-      ` : ''}
-
-      ${project.role ? `
-        <section class="glass-card reveal-up" style="padding: 2rem;">
-          <h2 style="font-size: var(--font-size-xl); margin-bottom: 1rem; color: var(--accent-primary); display: flex; align-items: center; gap: 0.5rem;">
-            💻 My Role & Engineering Responsibilities
-          </h2>
-          <p style="color: var(--text-secondary); line-height: 1.8; font-size: 1.025rem;">
-            ${project.role}
-          </p>
-        </section>
-      ` : ''}
-
-      ${project.developmentProcess ? `
-        <section class="glass-card reveal-up" style="padding: 2rem;">
-          <h2 style="font-size: var(--font-size-xl); margin-bottom: 1rem; color: var(--accent-primary); display: flex; align-items: center; gap: 0.5rem;">
-            ⚙️ Development Process
-          </h2>
-          <p style="color: var(--text-secondary); line-height: 1.8; font-size: 1.025rem;">
-            ${project.developmentProcess}
-          </p>
-        </section>
-      ` : ''}
-
-      ${project.keyFeatures && project.keyFeatures.length ? `
-        <section class="glass-card reveal-up" style="padding: 2rem;">
-          <h2 style="font-size: var(--font-size-xl); margin-bottom: 1.25rem; color: var(--accent-primary); display: flex; align-items: center; gap: 0.5rem;">
-            ⚡ Key Implemented Features
-          </h2>
-          <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.85rem;">
+          <div class="project-features-grid">
             ${project.keyFeatures.map(feat => `
-              <li style="display: flex; align-items: flex-start; gap: 0.75rem; color: var(--text-secondary); line-height: 1.6;">
-                <span style="color: var(--accent-primary); font-weight: bold;">✓</span>
-                <span>${feat}</span>
-              </li>
+              <div class="project-feature-card">
+                <div class="project-feature-check">
+                  <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <p class="project-feature-text">${feat}</p>
+              </div>
             `).join('')}
-          </ul>
+          </div>
         </section>
       ` : ''}
 
-      ${project.challenges || project.solutions ? `
-        <section class="glass-card reveal-up" style="padding: 2rem;">
-          <h2 style="font-size: var(--font-size-xl); margin-bottom: 1.25rem; color: var(--accent-primary); display: flex; align-items: center; gap: 0.5rem;">
-            🧠 Technical Challenges & Solutions
+      <!-- TECHNICAL CHALLENGES & SOLUTIONS -->
+      ${(project.challenges || project.solutions) ? `
+        <section class="project-challenges-card">
+          <h2 class="project-card-title" style="display: flex; align-items: center; gap: 0.75rem;">
+            <span>💡</span> Technical Challenges & Solutions
           </h2>
-          ${project.challenges ? `
-            <div style="margin-bottom: 1.5rem;">
-              <h3 style="font-size: var(--font-size-base); color: var(--text-primary); margin-bottom: 0.5rem;">The Challenge:</h3>
-              <p style="color: var(--text-secondary); line-height: 1.7;">${project.challenges}</p>
-            </div>
-          ` : ''}
-          ${project.solutions ? `
+          <div class="project-challenges-grid">
             <div>
-              <h3 style="font-size: var(--font-size-base); color: var(--text-primary); margin-bottom: 0.5rem;">The Solution:</h3>
-              <p style="color: var(--text-secondary); line-height: 1.7;">${project.solutions}</p>
+              <h3 class="project-subheading">The Challenge</h3>
+              <p class="project-card-text">${project.challenges || ''}</p>
             </div>
-          ` : ''}
+            <div>
+              <h3 class="project-subheading">The Solution</h3>
+              <p class="project-card-text">${project.solutions || ''}</p>
+            </div>
+          </div>
         </section>
       ` : ''}
 
+      <!-- PROJECT OUTCOME & IMPACT -->
       ${project.outcome ? `
-        <section class="glass-card reveal-up" style="padding: 2rem; border-color: var(--accent-primary);">
-          <h2 style="font-size: var(--font-size-xl); margin-bottom: 1rem; color: var(--accent-primary); display: flex; align-items: center; gap: 0.5rem;">
-            🚀 Project Outcome & Impact
-          </h2>
-          <p style="color: var(--text-secondary); line-height: 1.8; font-size: 1.025rem;">
-            ${project.outcome}
-          </p>
+        <section class="project-outcome-card">
+          <div class="project-outcome-badge">
+            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <h2 class="project-outcome-title">Project Outcome & Impact</h2>
+          <p class="project-outcome-text">${formattedOutcome}</p>
         </section>
       ` : ''}
-    </div>
 
-    <!-- PREVIOUS / NEXT NAVIGATION BAR -->
-    <nav aria-label="Project Navigation" class="flex justify-between items-center reveal-up" style="padding: 1.5rem 0; border-top: 1px solid var(--border-color); margin-top: 2rem;">
-      <a href="project.html?project=${prevProject.slug}" class="btn btn-secondary btn-sm hover-underline" style="gap: 0.5rem;">
-        ← Previous: ${prevProject.title.split(' ')[0]}
-      </a>
-      <a href="projects.html" class="text-muted hover-underline font-mono" style="font-size: var(--font-size-xs);">
-        All Projects
-      </a>
-      <a href="project.html?project=${nextProject.slug}" class="btn btn-secondary btn-sm hover-underline" style="gap: 0.5rem;">
-        Next: ${nextProject.title.split(' ')[0]} →
-      </a>
-    </nav>
+      <!-- PREVIOUS / NEXT NAVIGATION BAR -->
+      <nav aria-label="Project Navigation" class="project-nav-bar">
+        <a href="project.html?project=${prevProject.slug}" class="project-nav-item">
+          ‹ Previous: ${prevProject.title.split(' ')[0]}
+        </a>
+        <a href="projects.html" class="project-nav-center">
+          ALL PROJECTS
+        </a>
+        <a href="project.html?project=${nextProject.slug}" class="project-nav-item">
+          Next: ${nextProject.title.split(' ')[0]} ›
+        </a>
+      </nav>
+
+      <!-- MORE PROJECTS SECTION -->
+    </div>
   `;
 };
 
+      // <section>
+      //   <h2 class="more-projects-title">More Projects</h2>
+      //   <div class="more-projects-grid">
+      //     ${otherProjects.map(p => `
+      //       <a href="project.html?project=${p.slug}" class="more-project-card">
+      //         <div class="more-project-thumb">
+      //           <img src="${p.thumbnail || p.heroImage || 'assets/images/hero_img.png'}" alt="${p.title}" loading="lazy">
+      //         </div>
+      //         <div class="more-project-body">
+      //           <h3 class="more-project-name">${p.title}</h3>
+      //           <div class="more-project-tech">${p.technologies.slice(0, 3).join(', ')}</div>
+      //         </div>
+      //       </a>
+      //     `).join('')}
+      //   </div>
+      // </section>
 
 
 document.addEventListener('DOMContentLoaded', () => {

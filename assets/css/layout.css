@@ -578,6 +578,7 @@ padding: 0.55rem 1.25rem 0.35rem;
     transition: all var(--transition-normal);
     display: flex;
     flex-direction: column;
+    opacity: 1 !important;
 }
 
 .project-card:hover {
